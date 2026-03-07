@@ -1,48 +1,57 @@
 # ETS Facturación Electrónica Panamá - HKA
 
-Módulo de Odoo 18 para facturación electrónica en Panamá mediante integración con **The Factory HKA Corp**.
+Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado con **The Factory HKA Corp** (proveedor autorizado ante la DGI).
 
-**Autor:** Easytech Services  
-**Web:** https://easytechservices.com  
-**Licencia:** LGPL-3
+| | |
+|---|---|
+| **Autor** | Easytech Services |
+| **Web** | https://easytechservices.com |
+| **Licencia** | LGPL-3 |
+| **Versión** | 18.0.1.1.0 |
+| **Última actualización** | Marzo 2026 |
 
 ---
 
-## Descripción
+## ¿Qué hace este módulo?
 
-Permite emitir facturas electrónicas válidas ante la DGI (Dirección General de Ingresos) usando la API de HKA Factory: envío, CUFE, anulación y descarga de XML/PDF.
+- Conecta Odoo con la API de HKA para enviar facturas y notas de crédito/débito a la **DGI (Dirección General de Ingresos)**.
+- Obtiene el **CUFE** (Código Único de Factura Electrónica), descarga el **XML y PDF** autorizados y permite **anular** documentos ya autorizados desde Odoo.
+- Gestiona **códigos de ubicación** de Panamá (provincia, distrito, corregimiento), **CPBS** y validación de **RUC** para contribuyentes.
 
 ## Características
 
-- Configuración de credenciales HKA por compañía (ambiente demo/producción)
-- Envío de facturas y notas de crédito/débito a la DGI
-- Obtención de CUFE y descarga de XML/PDF autorizados
-- **Anulación en DGI** mediante wizard (motivo + confirmación)
-- Consulta de estado y historial de documentos (hka.document)
-- Códigos de ubicación Panamá (CSV), catálogo CPBS, unidades de medida
-- Validación RUC y código de ubicación para contribuyentes
-- Envío automático opcional al validar la factura
+- **Configuración:** Credenciales HKA por compañía (demo/producción), envío automático opcional al validar.
+- **Envío a DGI:** Botón *Enviar a DGI* en facturas y notas de crédito/débito validadas.
+- **Anulación:** Botón *Anular en DGI* → wizard para indicar motivo → solo si la factura está autorizada y no tiene nota de crédito asociada.
+- **Documentos:** Historial en *Facturación Electrónica → Documentos Electrónicos* (CUFE, estado, PDF).
+- **Ubicaciones:** Carga desde CSV (`data/hka_ubicaciones.csv`) según catálogo DGI/HKA; una sola fuente para evitar errores de código.
+- **Contactos:** Tipo de cliente (contribuyente/consumidor final), RUC y código de ubicación para FE.
 
 ## Requisitos
 
-- Odoo 18
-- Cuenta activa en The Factory HKA
-- Licencia de facturación electrónica vigente
-- Certificado digital (producción)
-- Python: `requests`, `PyJWT`
+- **Odoo:** 18.0
+- **Python:** `requests`, `PyJWT`
+- **HKA:** Cuenta activa en The Factory HKA, licencia de facturación electrónica vigente; certificado digital para producción.
 
 ## Instalación
 
-1. Añadir la carpeta del módulo a la ruta de addons de Odoo.
-2. Actualizar lista de aplicaciones.
-3. Buscar **"ETS Facturación Electrónica Panamá - HKA"** e instalar.
+1. Añadir la carpeta `FE_HKA_OCI` a la ruta de addons de Odoo.
+2. Reiniciar Odoo (o actualizar lista de aplicaciones).
+3. En **Apps**, buscar *ETS Facturación Electrónica Panamá* e **Instalar**.
 
-## Uso básico
+## Uso rápido
 
-- **Enviar a DGI:** En la factura validada, botón *Enviar a DGI*.
-- **Anular en DGI:** Botón *Anular en DGI* → indicar motivo → Confirmar (solo si está autorizada y sin nota de crédito asociada).
-- **Ubicaciones:** Carga desde `data/hka_ubicaciones.csv` (formato P-D-C según catálogo DGI/HKA).
+- **Enviar una factura:** Validar la factura → botón *Enviar a DGI*. Si está activo el envío automático, se envía al validar.
+- **Anular en DGI:** Solo para facturas ya autorizadas. Botón *Anular en DGI* → escribir motivo (opcional) → *Confirmar*.
+- **Reimprimir PDF fiscal:** Botón *Reimprimir factura fiscal* una vez enviada.
 
-## Versión
+## Estructura del repositorio
 
-18.0.1.1.0
+- `models/` — account_move, hka_api, hka_document (envío, anulación, descarga).
+- `wizard/` — wizard de anulación en DGI (motivo + confirmar).
+- `data/` — carga de ubicaciones Panamá (CSV), secuencias, CPBS, etc.
+- `views/` — formularios y botones de factura, documentos FE, contactos, configuración.
+
+---
+
+Desarrollado por **Easytech Services** · https://easytechservices.com
