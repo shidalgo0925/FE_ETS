@@ -1,5 +1,7 @@
 # Instalación — Facturación Electrónica de ETS (Panamá, Odoo 19)
 
+> **No use** *Aplicaciones → Importar módulo* con un ZIP. Vea `LEEME_INSTALACION.txt` y el comentario en el código de Odoo: los módulos “importados” **no cargan Python**; este addon **debe** ir en el sistema de archivos del servidor (`addons_path`).
+
 Módulo técnico: **FE_ETS** (carpeta del addon; el nombre en Apps es *Facturación Electrónica de ETS*).
 
 ## 1. Requisitos

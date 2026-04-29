@@ -1,0 +1,23 @@
+================================================================================
+  FE_ETS — Facturación Electrónica (Panamá) / Odoo 19
+================================================================================
+
+NO USE: Aplicaciones > Importar módulo (archivo ZIP)
+-----------------------------------------------------
+Esa opción de Odoo ("base_import_module") NO carga el código Python del addon.
+Los modelos hka.*, ampliación de res.company, facturas, etc. NO existen y la
+importación fallará (CSV, XML, vistas) o dejará la base en estado incorrecto.
+
+INSTALACIÓN VÁLIDA
+-----------------
+1) Descomprima este ZIP en el SERVIDOR donde corre Odoo.
+2) Coloque la carpeta FE_ETS dentro de un directorio que esté en addons_path
+   de su odoo.conf (ej. .../custom-addons/FE_ETS/__manifest__.py).
+3) Reinicie el servicio odoo.
+4) En Odoo: Aplicaciones > Actualizar lista de aplicaciones > Instalar
+   "Facturación Electrónica de ETS".
+
+Dependencias Python: requests, PyJWT, qrcode (mismo venv que Odoo).
+
+Más detalle: INSTALLACION_FE.md o README.md en el repositorio.
+================================================================================
