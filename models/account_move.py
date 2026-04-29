@@ -226,18 +226,11 @@ class AccountMove(models.Model):
 
     def _get_hka_client(self):
         """Obtiene el cliente de la API HKA"""
-        from .hka_api import HKAApiClient
-        
         company = self.company_id or self.env.company
         
         if not company.hka_usuario or not company.hka_clave:
             raise UserError(_('Configure las credenciales del servicio en Ajustes → Empresa (facturación electrónica).'))
-        
-        return HKAApiClient(
-            company.hka_usuario,
-            company.hka_clave,
-            company.hka_ambiente
-        )
+        return company._get_hka_client()
     
     def _prepare_hka_cliente(self):
         """Prepara datos del receptor para HKA.

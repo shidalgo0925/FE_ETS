@@ -10,9 +10,13 @@
                     <group>
                         <group string="Conexión al servicio (PAC)">
                             <p class="text-muted small" colspan="2">Credenciales del proveedor autorizado de certificación para envío a DGI.</p>
+                            <field name="hka_integration_mode" string="Modo integración"/>
                             <field name="hka_ambiente" string="Ambiente"/>
                             <field name="hka_usuario" string="Usuario"/>
                             <field name="hka_clave" string="Contraseña" password="True" force_save="1"/>
+                            <field name="hka_backend_url" string="URL API ETS" invisible="hka_integration_mode != 'ets_api'"/>
+                            <field name="hka_backend_token" string="Token API ETS" password="True" force_save="1" invisible="hka_integration_mode != 'ets_api'"/>
+                            <field name="hka_backend_timeout" string="Timeout API ETS (s)" invisible="hka_integration_mode != 'ets_api'"/>
                             <field name="hka_auto_send" string="Enviar automáticamente a DGI" widget="boolean_toggle"/>
                         </group>
                         <group string="Datos fiscales">

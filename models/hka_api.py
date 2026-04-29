@@ -319,3 +319,104 @@ class HKAApiClient:
         except Exception as e:
             _logger.error(f"HKA API: Error al consultar folios - {e}")
             return {'success': False, 'error': str(e)}
+
+
+class ETSBridgeApiClient:
+    """
+    Cliente para API externa ETS (opción 2).
+    Odoo prepara el documento y delega autenticación/envío al backend ETS.
+    """
+
+    def __init__(self, usuario, clave, ambiente='demo', backend_url=None, backend_token=None, timeout=30):
+        self.usuario = usuario
+        self.clave = clave
+        self.ambiente = ambiente or 'demo'
+        self.backend_url = (backend_url or '').rstrip('/')
+        self.backend_token = backend_token
+        self.timeout = int(timeout or 30)
+
+    def _headers(self):
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+        if self.backend_token:
+            headers['Authorization'] = f'Bearer {self.backend_token}'
+        return headers
+
+    def _call(self, path, payload, timeout=None):
+        if not self.backend_url:
+            return {'success': False, 'error': 'Configure la URL del backend ETS.'}
+        url = f"{self.backend_url}{path}"
+        try:
+            res = requests.post(
+                url,
+                json=payload,
+                headers=self._headers(),
+                timeout=timeout or self.timeout,
+            )
+            data = res.json()
+            ok_flag = bool(data.get('success'))
+            code = data.get('codigo')
+            ok_code = str(code) == '200'
+            if ok_flag or ok_code:
+                return {'success': True, 'data': data}
+            return {'success': False, 'error': data.get('mensaje') or data.get('error') or 'Error API ETS', 'data': data}
+        except requests.exceptions.RequestException as e:
+            return {'success': False, 'error': f'Error de conexión API ETS: {str(e)}'}
+        except Exception as e:
+            return {'success': False, 'error': f'Error inesperado API ETS: {str(e)}'}
+
+    def authenticate(self):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+        }
+        return self._call('/api/v1/fe/authenticate', payload, timeout=self.timeout)
+
+    def enviar_documento(self, documento):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+            'documento': documento,
+        }
+        return self._call('/api/v1/fe/send', payload, timeout=max(self.timeout, 60))
+
+    def anular_documento(self, cufe, motivo_anulacion):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+            'cufe': cufe,
+            'motivoAnulacion': motivo_anulacion,
+        }
+        return self._call('/api/v1/fe/cancel', payload, timeout=self.timeout)
+
+    def consultar_estado(self, cufe):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+            'cufe': cufe,
+        }
+        return self._call('/api/v1/fe/status', payload, timeout=self.timeout)
+
+    def descargar_documento(self, cufe, tipo='pdf'):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+            'cufe': cufe,
+            'tipoArchivo': (tipo or 'pdf').upper(),
+        }
+        return self._call('/api/v1/fe/download', payload, timeout=max(self.timeout, 60))
+
+    def consultar_folios(self):
+        payload = {
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'ambiente': self.ambiente,
+        }
+        return self._call('/api/v1/fe/folios', payload, timeout=self.timeout)
