@@ -5,7 +5,8 @@ from .data.load_panama_locations import load_panama_locations
 
 
 def _cargar_codigos_ubicacion_si_faltan(env):
-    """Carga códigos de ubicación desde XML solo si no existen (instalación idempotente en cualquier DB)."""
+    """Legado: si existiera ``hka_codigo_ubicacion_data.xml``, carga solo códigos aún no presentes.
+    El catálogo principal es ``hka_ubicaciones.csv`` vía ``load_panama_locations``."""
     import os
     import xml.etree.ElementTree as ET
     import logging

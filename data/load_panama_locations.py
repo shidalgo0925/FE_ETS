@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Carga **opcional** de códigos P-D-C desde CSV. **No** se ejecuta al instalar el módulo.
+Carga de códigos DGI **Provincia–Distrito–Corregimiento** (P-D-C) desde ``hka_ubicaciones.csv``.
 
-No se pretende cargar todo Panamá: las filas de `hka_ubicaciones.csv` son solo referencia o
-importación bajo demanda. Alta manual en el menú «Código ubicación HKA» o importar llamando
-`load_panama_locations(env)` desde la shell de Odoo si lo necesitan.
+* Se ejecuta en el **post_init** al instalar el módulo.
+* Tras **actualizar** el módulo a la versión que trae la migración ``post-reload_ubicaciones_dgi``,
+  se vuelve a fusionar el catálogo (ver ``migrations/``).
 
-Fuente DGI/HKA: codigoUbicacion formato P-D-C (provincia-distrito-corregimiento).
+``hka_ubicaciones.csv`` se genera a partir de la jerarquía tipo DGI (códigos de 6 dígitos
+``cod_geo`` → P-D-C sin ceros a la izquierda por tramo), alineada al repositorio público
+`listado-ubicaciones-panama` (M. Rios / molekilla). Compruebe actualizaciones ante la DGI.
 
-Archivo: FE_ETS/data/hka_ubicaciones.csv — Formato: codigo,provincia,distrito,corregimiento
+Formato CSV: ``codigo,provincia,distrito,corregimiento`` — ``codigo`` = ``P-D-C`` (ej. ``8-10-7``).
 """
 import csv
 import logging
 import os
 import re
-
-from odoo import api, SUPERUSER_ID
 
 _logger = logging.getLogger(__name__)
 
@@ -23,10 +23,11 @@ CSV_FILENAME = 'hka_ubicaciones.csv'
 
 
 def _normalize_codigo(codigo):
-    """Código HKA: formato P-D-C (ej. 8-4-1) o 6 dígitos. Devuelve tal cual para guardar."""
+    """Devuelve código P-D-C normalizado (6 dígitos DGI → P-D-C)."""
     if not codigo:
         return ''
-    return str(codigo).strip()
+    raw = str(codigo).strip()
+    return _codigo_a_pdc(raw) or raw
 
 
 def _codigo_a_pdc(codigo):
@@ -140,9 +141,8 @@ def _limpiar_y_cargar_ubicaciones(env):
 
 def _load_hka_location_codes(env):
     """
-    Paso 4: Fusiona filas desde CSV sin vaciar la tabla (respeta ubicaciones dadas de alta a mano).
-    Actualiza o crea por código P-D-C; no es el catálogo completo del país, solo lo definido en el CSV.
-    También existen los mismos registros en data/hka_codigo_ubicacion_data.xml (mantener CSV y XML alineados).
+    Paso 4: Fusiona filas desde ``hka_ubicaciones.csv`` (catálogo P-D-C) sin vaciar la tabla
+    de forma destructiva: crea o actualiza por código P-D-C normalizado.
     """
     _load_from_csv(env)
 

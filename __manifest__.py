@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Facturación Electrónica de ETS',
-    'version': '19.0.1.5.0',
+    'version': '19.0.1.6.0',
     'category': 'Accounting/Localizations/EDI',
     'summary': (
         'Odoo 19: facturación electrónica Panamá (DGI) — emisión, envío y seguimiento de '
@@ -80,7 +80,6 @@ el usuario debe verificar siempre los requisitos vigentes ante **DGI** y ante su
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
-        'data/hka_codigo_ubicacion_data.xml',
         'data/hka_cpbs_data.xml',
         'data/hka_unidad_medida_data.xml',
         'views/res_company_views.xml',

@@ -1,81 +1,554 @@
 codigo,provincia,distrito,corregimiento
+1-1-1,Bocas del Toro,Bocas del Toro,Bocas del Toro (Cabecera)
+1-1-2,Bocas del Toro,Bocas del Toro,Bastimentos
+1-1-3,Bocas del Toro,Bocas del Toro,Cauchero
+1-1-4,Bocas del Toro,Bocas del Toro,Punta Laurel
+1-1-5,Bocas del Toro,Bocas del Toro,Tierra Oscura
+1-2-1,Bocas del Toro,Changuinola,Changuinola (Cabecera)
+1-2-2,Bocas del Toro,Changuinola,Almirante
+1-2-3,Bocas del Toro,Changuinola,Guabito
+1-2-4,Bocas del Toro,Changuinola,Teribe
+1-2-5,Bocas del Toro,Changuinola,Valle del Risco
+1-2-6,Bocas del Toro,Changuinola,El Empalme
+1-2-7,Bocas del Toro,Changuinola,Las Tablas
+1-3-1,Bocas del Toro,Chiriquí Grande,Chiriquí Grande (Cabecera)
+1-3-2,Bocas del Toro,Chiriquí Grande,Miramar
+1-3-3,Bocas del Toro,Chiriquí Grande,Punta Peña
+1-3-4,Bocas del Toro,Chiriquí Grande,Punta Robalo
+1-3-5,Bocas del Toro,Chiriquí Grande,Rambala
+2-1-1,Coclé,Aguadulce,Aguadulce (Cabecera)
+2-1-2,Coclé,Aguadulce,El Cristo
+2-1-3,Coclé,Aguadulce,El Roble
+2-1-4,Coclé,Aguadulce,Pocrí
+2-1-5,Coclé,Aguadulce,Barrios Unidos
+2-2-1,Coclé,Antón,Antón (Cabecera)
+2-2-2,Coclé,Antón,Cabuya
+2-2-3,Coclé,Antón,El Chirú
+2-2-4,Coclé,Antón,El Retiro
+2-2-5,Coclé,Antón,El Valle
+2-2-6,Coclé,Antón,Juan Díaz
+2-2-7,Coclé,Antón,Río Hato
+2-2-8,Coclé,Antón,San Juan de Dios
+2-2-9,Coclé,Antón,Santa Rita
+2-2-10,Coclé,Antón,Caballero
+2-3-1,Coclé,La Pintada,La Pintada (Cabecera)
+2-3-2,Coclé,La Pintada,El Harino
+2-3-3,Coclé,La Pintada,El Potrero
+2-3-4,Coclé,La Pintada,Llano Grande
+2-3-5,Coclé,La Pintada,Piedras Gordas
+2-3-6,Coclé,La Pintada,Las Lomas
+2-4-1,Coclé,Natá,Natá (Cabecera)
+2-4-2,Coclé,Natá,Capellanía
+2-4-3,Coclé,Natá,El Caño
+2-4-4,Coclé,Natá,Guzmán
+2-4-5,Coclé,Natá,Las Huacas
+2-4-6,Coclé,Natá,Toza
+2-5-1,Coclé,Olá,Olá (Cabecera)
+2-5-2,Coclé,Olá,El Copé
+2-5-3,Coclé,Olá,El Palmar
+2-5-4,Coclé,Olá,El Picacho
+2-5-5,Coclé,Olá,La Pava
+2-6-1,Coclé,Penonomé,Penonomé (Cabecera)
+2-6-2,Coclé,Penonomé,Cañaveral
+2-6-3,Coclé,Penonomé,Coclé
+2-6-4,Coclé,Penonomé,Chiguiri Arriba
+2-6-5,Coclé,Penonomé,El Coco
+2-6-6,Coclé,Penonomé,Pajonal
+2-6-7,Coclé,Penonomé,Río Grande
+2-6-8,Coclé,Penonomé,Río Indio
+2-6-9,Coclé,Penonomé,Toabré
+2-6-10,Coclé,Penonomé,Tulú
+3-1-1,Colón,Colón,Barrio Norte
+3-1-2,Colón,Colón,Barrio Sur
+3-1-3,Colón,Colón,Buena Vista
+3-1-4,Colón,Colón,Cativá
+3-1-5,Colón,Colón,Ciricito
+3-1-6,Colón,Colón,Cristóbal
+3-1-7,Colón,Colón,Escobal
+3-1-8,Colón,Colón,Limón
+3-1-9,Colón,Colón,Nueva Providencia
+3-1-10,Colón,Colón,Puerto Pilón
+3-1-11,Colón,Colón,Sabanitas
+3-1-12,Colón,Colón,Salamanca
+3-1-13,Colón,Colón,San Juan
+3-1-14,Colón,Colón,Santa Rosa
+3-2-1,Colón,Chagres,Nuevo Chagres (Cabecera)
+3-2-2,Colón,Chagres,Achiote
+3-2-3,Colón,Chagres,El Guabo
+3-2-4,Colón,Chagres,La Encantada
+3-2-5,Colón,Chagres,Palma Bellas
+3-2-6,Colón,Chagres,Piña
+3-2-7,Colón,Chagres,Salud
+3-3-1,Colón,Donoso,Miguel de la Borda
+3-3-2,Colón,Donoso,Coclé del Norte
+3-3-3,Colón,Donoso,El Guácimo
+3-3-4,Colón,Donoso,Gobea
+3-3-5,Colón,Donoso,Río Indio
+3-3-6,Colón,Donoso,San José del General
+3-4-1,Colón,Portobelo,Portobelo (Cabecera)
+3-4-2,Colón,Portobelo,Cacique
+3-4-3,Colón,Portobelo,Garrote
+3-4-4,Colón,Portobelo,Isla Grande
+3-4-5,Colón,Portobelo,María Chiquita
+3-5-1,Colón,Santa Isabel,Palenque
+3-5-2,Colón,Santa Isabel,Cuango
+3-5-3,Colón,Santa Isabel,Miramar
+3-5-4,Colón,Santa Isabel,Nombre de Dios
+3-5-5,Colón,Santa Isabel,Palmira
+3-5-6,Colón,Santa Isabel,Playa Chiquita
+3-5-7,Colón,Santa Isabel,Santa Isabel
+3-5-8,Colón,Santa Isabel,Viento Frío
+4-1-1,Chiriquí,Alanje,Alanje (Cabecera)
+4-1-2,Chiriquí,Alanje,Divalá
+4-1-3,Chiriquí,Alanje,Tejar
+4-1-4,Chiriquí,Alanje,Guarumal
+4-1-5,Chiriquí,Alanje,Palo Grande
+4-1-6,Chiriquí,Alanje,Querévalo
+4-1-7,Chiriquí,Alanje,Santo Tomás
+4-1-8,Chiriquí,Alanje,Canto Gallo
+4-1-9,Chiriquí,Alanje,Nuevo México
+4-2-1,Chiriquí,Barú,Puerto Armuelles
+4-2-2,Chiriquí,Barú,Baco
+4-2-3,Chiriquí,Barú,Limones
+4-2-4,Chiriquí,Barú,Progreso
+4-2-5,Chiriquí,Barú,Rodolfo Aguilar Delgado
+4-3-1,Chiriquí,Boquerón,Boquerón (Cabecera)
+4-3-2,Chiriquí,Boquerón,Bagalá
+4-3-3,Chiriquí,Boquerón,Cordillera
+4-3-4,Chiriquí,Boquerón,Guabal
+4-3-5,Chiriquí,Boquerón,Guayabal
+4-3-6,Chiriquí,Boquerón,Paraíso
+4-3-7,Chiriquí,Boquerón,Pedregal
+4-3-8,Chiriquí,Boquerón,Tijeras
+4-4-1,Chiriquí,Boquete,Bajo Boquete (Cabecera)
+4-4-2,Chiriquí,Boquete,Caldera
+4-4-3,Chiriquí,Boquete,Palmira
+4-4-4,Chiriquí,Boquete,Alto Boquete
+4-4-5,Chiriquí,Boquete,Jaramillo
+4-4-6,Chiriquí,Boquete,Los Naranjos
+4-5-1,Chiriquí,Bugaba,La Concepción (Cabecera)
+4-5-2,Chiriquí,Bugaba,Aserrío de Gariché
+4-5-3,Chiriquí,Bugaba,Bugaba
+4-5-4,Chiriquí,Bugaba,Cerro Punta
+4-5-5,Chiriquí,Bugaba,Gómez
+4-5-6,Chiriquí,Bugaba,La Estrella
+4-5-7,Chiriquí,Bugaba,San Andrés
+4-5-8,Chiriquí,Bugaba,Santa Marta
+4-5-9,Chiriquí,Bugaba,Santa Rosa
+4-5-10,Chiriquí,Bugaba,Santo Domingo
+4-5-11,Chiriquí,Bugaba,Sortová
+4-5-12,Chiriquí,Bugaba,Volcán
+4-5-13,Chiriquí,Bugaba,El Bongo
+4-6-1,Chiriquí,David,David (Cabecera)
+4-6-2,Chiriquí,David,Bijagual
+4-6-3,Chiriquí,David,Cochea
+4-6-4,Chiriquí,David,Chiriquí
+4-6-5,Chiriquí,David,Guacá
+4-6-6,Chiriquí,David,Las Lomas
+4-6-7,Chiriquí,David,Pedregal
+4-6-8,Chiriquí,David,San Carlos
+4-6-9,Chiriquí,David,San Pablo Nuevo
+4-6-10,Chiriquí,David,San Pablo Viejo
+4-7-1,Chiriquí,Dolega,Dolega (Cabecera)
+4-7-2,Chiriquí,Dolega,Dos Ríos
+4-7-3,Chiriquí,Dolega,Los Anastacios
+4-7-4,Chiriquí,Dolega,Potrerillo Arriba
+4-7-5,Chiriquí,Dolega,Potrerillo Abajo
+4-7-6,Chiriquí,Dolega,Rovira
+4-7-7,Chiriquí,Dolega,Tinajas
+4-7-8,Chiriquí,Dolega,Los Algarrobos
+4-8-1,Chiriquí,Gualaca,Gualaca (Cabecera)
+4-8-2,Chiriquí,Gualaca,Hornito
+4-8-3,Chiriquí,Gualaca,Los Ángeles
+4-8-4,Chiriquí,Gualaca,Paja de Sombrero
+4-8-5,Chiriquí,Gualaca,Rincón
+4-9-1,Chiriquí,Remedios,Remedios (Cabecera)
+4-9-2,Chiriquí,Remedios,El Nancito
+4-9-3,Chiriquí,Remedios,El Porvenir
+4-9-4,Chiriquí,Remedios,El Puerto
+4-9-5,Chiriquí,Remedios,Santa Lucía
+4-10-1,Chiriquí,Renacimiento,Río Sereno (Cabecera)
+4-10-2,Chiriquí,Renacimiento,Breñón
+4-10-3,Chiriquí,Renacimiento,Cañas Gordas
+4-10-4,Chiriquí,Renacimiento,Monte Lirio
+4-10-5,Chiriquí,Renacimiento,Plaza Caizán
+4-10-6,Chiriquí,Renacimiento,Santa Cruz
+4-10-7,Chiriquí,Renacimiento,Santa Clara
+4-10-8,Chiriquí,Renacimiento,Dominical
+4-11-1,Chiriquí,San Félix,Las Lajas (Cabecera)
+4-11-2,Chiriquí,San Félix,Juay
+4-11-3,Chiriquí,San Félix,San Félix
+4-11-4,Chiriquí,San Félix,Lajas Adentro
+4-11-5,Chiriquí,San Félix,Santa Cruz
+4-12-1,Chiriquí,San Lorenzo,Horconcitos (Cabecera)
+4-12-2,Chiriquí,San Lorenzo,Boca Chica
+4-12-3,Chiriquí,San Lorenzo,Boca del Norte
+4-12-4,Chiriquí,San Lorenzo,San Juan
+4-12-5,Chiriquí,San Lorenzo,San Lorenzo
+4-13-1,Chiriquí,Tole,Tolé (Cabecera)
+4-13-2,Chiriquí,Tole,Bella Vista
+4-13-3,Chiriquí,Tole,Cerro Viejo
+4-13-4,Chiriquí,Tole,El Cristo
+4-13-5,Chiriquí,Tole,Justo Fidel Palacios
+4-13-6,Chiriquí,Tole,Lajas de Tolé
+4-13-7,Chiriquí,Tole,Potrero de Caña
+4-13-8,Chiriquí,Tole,Quebrada de Piedra
+4-13-9,Chiriquí,Tole,Veladero
+5-1-1,Darién,Chepigana,La Palma (Cabecera)
+5-1-2,Darién,Chepigana,Camoganti
+5-1-3,Darién,Chepigana,Chepigana
+5-1-4,Darién,Chepigana,Garachiné
+5-1-5,Darién,Chepigana,Jaqué
+5-1-6,Darién,Chepigana,Puerto Piña
+5-1-7,Darién,Chepigana,Río Congo
+5-1-8,Darién,Chepigana,Río Iglesias
+5-1-9,Darién,Chepigana,Sambú
+5-1-10,Darién,Chepigana,Setegantí
+5-1-11,Darién,Chepigana,Taimatí
+5-1-12,Darién,Chepigana,Tucutí
+5-1-13,Darién,Chepigana,Agua Fría
+5-1-14,Darién,Chepigana,Cucunatí
+5-1-15,Darién,Chepigana,Río Congo Arriba
+5-1-16,Darién,Chepigana,Santa Fe
+5-2-1,Darién,Pinogana,El Real (Cabecera)
+5-2-2,Darién,Pinogana,Boca de Cupe
+5-2-3,Darién,Pinogana,Paya
+5-2-4,Darién,Pinogana,Pinogana
+5-2-5,Darién,Pinogana,Púcuro
+5-2-6,Darién,Pinogana,Yape
+5-2-7,Darién,Pinogana,Yaviza
+5-2-8,Darién,Pinogana,Metetí
+6-1-1,Herrera,Chitré,Chitré
+6-1-2,Herrera,Chitré,La Arena
+6-1-3,Herrera,Chitré,Monagrillo
+6-1-4,Herrera,Chitré,Llano Bonito
+6-1-5,Herrera,Chitré,San Juan Bautista
+6-2-1,Herrera,Las Minas,Las Minas (Cabecera)
+6-2-2,Herrera,Las Minas,Chepo
+6-2-3,Herrera,Las Minas,Chumical
+6-2-4,Herrera,Las Minas,El Toro
+6-2-5,Herrera,Las Minas,Leones
+6-2-6,Herrera,Las Minas,Quebrada del Rosario
+6-2-7,Herrera,Las Minas,Quebrada del Ciprian
+6-3-1,Herrera,Los Pozos,Los Pozos (Cabecera)
+6-3-2,Herrera,Los Pozos,Capurí
+6-3-3,Herrera,Los Pozos,El Calabacito
+6-3-4,Herrera,Los Pozos,El Cedro
+6-3-5,Herrera,Los Pozos,La Arena
+6-3-6,Herrera,Los Pozos,La Pitaloza
+6-3-7,Herrera,Los Pozos,Los Cerritos
+6-3-8,Herrera,Los Pozos,Los Cerros de Paja
+6-3-9,Herrera,Los Pozos,Las Llanas
+6-4-1,Herrera,Ocú,Ocú (Cabecera)
+6-4-2,Herrera,Ocú,Cerro Largo
+6-4-3,Herrera,Ocú,Los Llanos
+6-4-4,Herrera,Ocú,Llano Grande
+6-4-5,Herrera,Ocú,Peñas Chatas
+6-4-6,Herrera,Ocú,El Tijeras
+6-4-7,Herrera,Ocú,Menchaca
+6-5-1,Herrera,Parita,Parita (Cabecera)
+6-5-2,Herrera,Parita,Cabuya
+6-5-3,Herrera,Parita,Los Castillos
+6-5-4,Herrera,Parita,Llano de La Cruz
+6-5-5,Herrera,Parita,Paris
+6-5-6,Herrera,Parita,Portobelillo
+6-5-7,Herrera,Parita,Potuga
+6-6-1,Herrera,Pesé,Pesé (Cabecera)
+6-6-2,Herrera,Pesé,Las Cabras
+6-6-3,Herrera,Pesé,El Pájaro
+6-6-4,Herrera,Pesé,El Barrero
+6-6-5,Herrera,Pesé,El Pedregoso
+6-6-6,Herrera,Pesé,El Ciruelo
+6-6-7,Herrera,Pesé,Sabana Grande
+6-6-8,Herrera,Pesé,Rincón Hondo
+6-7-1,Herrera,Santa María,Santa Marta (Cabecera)
+6-7-2,Herrera,Santa María,Chupampa
+6-7-3,Herrera,Santa María,El Rincón
+6-7-4,Herrera,Santa María,El Limón
+6-7-5,Herrera,Santa María,Los Canelos
+7-1-1,Los Santos,Guararé,Guararé (Cabecera)
+7-1-2,Los Santos,Guararé,El Espinal
+7-1-3,Los Santos,Guararé,El Macano
+7-1-4,Los Santos,Guararé,Guararé Arriba
+7-1-5,Los Santos,Guararé,La Enea
+7-1-6,Los Santos,Guararé,La Pasera
+7-1-7,Los Santos,Guararé,Las Trancas
+7-1-8,Los Santos,Guararé,Llano Abajo
+7-1-9,Los Santos,Guararé,El Hato
+7-1-10,Los Santos,Guararé,Perales
+7-2-1,Los Santos,Las Tablas,Las Tablas (Cabecera)
+7-2-2,Los Santos,Las Tablas,Bajo Corral
+7-2-3,Los Santos,Las Tablas,Bayano
+7-2-4,Los Santos,Las Tablas,El Carate
+7-2-5,Los Santos,Las Tablas,El Cocal
+7-2-6,Los Santos,Las Tablas,El Manantial
+7-2-7,Los Santos,Las Tablas,El Muñoz
+7-2-8,Los Santos,Las Tablas,El Pedregoso
+7-2-9,Los Santos,Las Tablas,La Laja
+7-2-10,Los Santos,Las Tablas,La Miel
+7-2-11,Los Santos,Las Tablas,La Palma
+7-2-12,Los Santos,Las Tablas,La Tiza
+7-2-13,Los Santos,Las Tablas,Las Palmitas
+7-2-14,Los Santos,Las Tablas,Las Tablas Abajo
+7-2-15,Los Santos,Las Tablas,Nuario
+7-2-16,Los Santos,Las Tablas,Palmira
+7-2-17,Los Santos,Las Tablas,Peña Blanca
+7-2-18,Los Santos,Las Tablas,Rincón Hondo
+7-2-19,Los Santos,Las Tablas,San José
+7-2-20,Los Santos,Las Tablas,San Miguel
+7-2-21,Los Santos,Las Tablas,Santo Domingo
+7-2-22,Los Santos,Las Tablas,El Sesteadero
+7-2-23,Los Santos,Las Tablas,Valle Rico
+7-2-24,Los Santos,Las Tablas,Valleriquito
+7-3-1,Los Santos,Los Santos,La Villa de Los Santos (Cabecera)
+7-3-2,Los Santos,Los Santos,El Guácimo
+7-3-3,Los Santos,Los Santos,La Colorada
+7-3-4,Los Santos,Los Santos,La Espigadilla
+7-3-5,Los Santos,Los Santos,Las Cruces
+7-3-6,Los Santos,Los Santos,Las Guabas
+7-3-7,Los Santos,Los Santos,Los Ángeles
+7-3-8,Los Santos,Los Santos,Los Olivos
+7-3-9,Los Santos,Los Santos,Llano Largo
+7-3-10,Los Santos,Los Santos,Sabana Grande
+7-3-11,Los Santos,Los Santos,Santa Ana
+7-3-12,Los Santos,Los Santos,Tres Quebradas
+7-3-13,Los Santos,Los Santos,Agua Buena
+7-3-14,Los Santos,Los Santos,Villa Lourdes
+7-4-1,Los Santos,Macaracas,Macaracas (Cabecera)
+7-4-2,Los Santos,Macaracas,Bahía Honda
+7-4-3,Los Santos,Macaracas,Bajos de Guera
+7-4-4,Los Santos,Macaracas,El Corozal
+7-4-5,Los Santos,Macaracas,Chupá
+7-4-6,Los Santos,Macaracas,El Cedro
+7-4-7,Los Santos,Macaracas,Espino Amarillo
+7-4-8,Los Santos,Macaracas,La Mesa
+7-4-9,Los Santos,Macaracas,Las Palmas
+7-4-10,Los Santos,Macaracas,Llano de Piedra
+7-4-11,Los Santos,Macaracas,El Mogollón
+7-5-1,Los Santos,Pedasí,Pedasí (Cabecera)
+7-5-2,Los Santos,Pedasí,Los Asientos
+7-5-3,Los Santos,Pedasí,Mariabé
+7-5-4,Los Santos,Pedasí,Purio
+7-5-5,Los Santos,Pedasí,Oria Arriba
+7-6-1,Los Santos,Pocrí,Pocrí (Cabecera)
+7-6-2,Los Santos,Pocrí,El Cañafístulo
+7-6-3,Los Santos,Pocrí,Lajamina
+7-6-4,Los Santos,Pocrí,Paraíso
+7-6-5,Los Santos,Pocrí,Paritilla
+7-7-1,Los Santos,Tonosí,Tonosí (Cabecera)
+7-7-2,Los Santos,Tonosí,Altos de Guera
+7-7-3,Los Santos,Tonosí,Cañas
+7-7-4,Los Santos,Tonosí,El Bebedero
+7-7-5,Los Santos,Tonosí,El Cacao
+7-7-6,Los Santos,Tonosí,El Cortezo
+7-7-7,Los Santos,Tonosí,Flores
+7-7-8,Los Santos,Tonosí,Guánico
+7-7-9,Los Santos,Tonosí,La Tronosa
+7-7-10,Los Santos,Tonosí,Cambutal
+7-7-11,Los Santos,Tonosí,Isla de Cañas
+8-1-1,Panamá,Arraiján,Arraiján (Cabecera)
+8-1-2,Panamá,Arraiján,Juan Demóstenes Arosemena
+8-1-3,Panamá,Arraiján,Nuevo Emperador
+8-1-4,Panamá,Arraiján,Santa Clara
+8-1-5,Panamá,Arraiján,Veracruz
+8-1-6,Panamá,Arraiján,Vista Alegre
+8-1-7,Panamá,Arraiján,Burunga
+8-1-8,Panamá,Arraiján,Cerro Silvestre
+8-2-1,Panamá,Balboa,San Miguel
+8-2-2,Panamá,Balboa,La Ensenada
+8-2-3,Panamá,Balboa,La Esmeralda
+8-2-4,Panamá,Balboa,La Guinea
+8-2-5,Panamá,Balboa,Pedro González
+8-2-6,Panamá,Balboa,Saboga
+8-3-1,Panamá,Capira,Capira (Cabecera)
+8-3-2,Panamá,Capira,Caimito
+8-3-3,Panamá,Capira,Campana
+8-3-4,Panamá,Capira,Cermeño
+8-3-5,Panamá,Capira,Ciri de Los Sotos
+8-3-6,Panamá,Capira,Ciri Grande
+8-3-7,Panamá,Capira,El Cacao
+8-3-8,Panamá,Capira,La Trinidad
+8-3-9,Panamá,Capira,Las Ollas Arriba
+8-3-10,Panamá,Capira,Lídice
+8-3-11,Panamá,Capira,Villa Carmen
+8-3-12,Panamá,Capira,Villa Rosario
+8-3-13,Panamá,Capira,Santa Rosa
+8-4-1,Panamá,Chame,Chame (Cabecera)
+8-4-2,Panamá,Chame,Bejuco
+8-4-3,Panamá,Chame,Buenos Aires
+8-4-4,Panamá,Chame,Cabuya
+8-4-5,Panamá,Chame,Chicá
+8-4-6,Panamá,Chame,El Líbano
+8-4-7,Panamá,Chame,Las Lajas
+8-4-8,Panamá,Chame,Nuevo Gorgona
+8-4-9,Panamá,Chame,Punta Chame
+8-4-10,Panamá,Chame,Sajalices
+8-4-11,Panamá,Chame,Sorá
+8-5-1,Panamá,Chepo,Chepo (Cabecera)
+8-5-2,Panamá,Chepo,Cañita
+8-5-3,Panamá,Chepo,Chepillo
+8-5-4,Panamá,Chepo,El Llano
+8-5-5,Panamá,Chepo,Las Margaritas
+8-5-6,Panamá,Chepo,Santa Cruz de Chinina
+8-5-7,Panamá,Chepo,Madugandí
+8-5-8,Panamá,Chepo,Tortí
+8-6-1,Panamá,Chimán,Chimán (Cabecera)
+8-6-2,Panamá,Chimán,Brujas
+8-6-3,Panamá,Chimán,Gonzalo Vásquez
+8-6-4,Panamá,Chimán,Pásiga
+8-6-5,Panamá,Chimán,Unión Santeña
+8-7-1,Panamá,La Chorrera,Barrio Balboa
+8-7-2,Panamá,La Chorrera,Barrio Colón
+8-7-3,Panamá,La Chorrera,Amador
+8-7-4,Panamá,La Chorrera,Arosemena
+8-7-5,Panamá,La Chorrera,El Arado
+8-7-6,Panamá,La Chorrera,El Coco
+8-7-7,Panamá,La Chorrera,Feullet
+8-7-8,Panamá,La Chorrera,Guadalupe
+8-7-9,Panamá,La Chorrera,Herrera
+8-7-10,Panamá,La Chorrera,Hurtado
+8-7-11,Panamá,La Chorrera,Iturralde
+8-7-12,Panamá,La Chorrera,La Represa
+8-7-13,Panamá,La Chorrera,Los Díaz
+8-7-14,Panamá,La Chorrera,Mendoza
+8-7-15,Panamá,La Chorrera,Obaldía
+8-7-16,Panamá,La Chorrera,Playa Leona
+8-7-17,Panamá,La Chorrera,Puerto Caimito
+8-7-18,Panamá,La Chorrera,Santa Rita
+8-8-1,Panamá,Panamá,San Felipe
+8-8-2,Panamá,Panamá,El Chorrillo
+8-8-3,Panamá,Panamá,Santa Ana
+8-8-4,Panamá,Panamá,Calidonia
+8-8-5,Panamá,Panamá,Curundú
+8-8-6,Panamá,Panamá,Bethania
+8-8-7,Panamá,Panamá,Bella Vista
+8-8-8,Panamá,Panamá,Pueblo Nuevo
+8-8-9,Panamá,Panamá,San Francisco
+8-8-10,Panamá,Panamá,Parque Lefevre
+8-8-11,Panamá,Panamá,Río Abajo
+8-8-12,Panamá,Panamá,Juan Díaz
+8-8-13,Panamá,Panamá,Pedregal
+8-8-14,Panamá,Panamá,Ancón
+8-8-15,Panamá,Panamá,Chilibre
+8-8-16,Panamá,Panamá,Las Cumbres
+8-8-17,Panamá,Panamá,Pacora
+8-8-18,Panamá,Panamá,San Martín
+8-8-19,Panamá,Panamá,Tocumen
+8-8-20,Panamá,Panamá,Las Mañanitas
+8-8-21,Panamá,Panamá,24 de Diciembre
+8-9-1,Panamá,San Carlos,San Carlos (Cabecera)
+8-9-2,Panamá,San Carlos,El Espino
+8-9-3,Panamá,San Carlos,El Higo
+8-9-4,Panamá,San Carlos,Guayabito
+8-9-5,Panamá,San Carlos,La Ermita
+8-9-6,Panamá,San Carlos,La Laguna
+8-9-7,Panamá,San Carlos,Las Uvas
+8-9-8,Panamá,San Carlos,Los Llanitos
+8-9-9,Panamá,San Carlos,San José
+8-10-1,Panamá,San Miguelito,Amelia Denis de Icaza
+8-10-2,Panamá,San Miguelito,Belisario Porras
+8-10-3,Panamá,San Miguelito,José Domingo Espinar
+8-10-4,Panamá,San Miguelito,Mateo Iturralde
+8-10-5,Panamá,San Miguelito,Victoriano Lorenzo
+8-10-6,Panamá,San Miguelito,Omar Torrijos
 8-10-7,Panamá,San Miguelito,Arnulfo Arias
 8-10-8,Panamá,San Miguelito,Belisario Frías
-8-10-9,Panamá,San Miguelito,Omar Torrijos
-8-10-10,Panamá,San Miguelito,Rufina Alfaro
-9-1-1,Colón,Colón,Colón
-9-1-2,Colón,Colón,Cristóbal
-9-1-3,Colón,Colón,Escobal
-9-1-4,Colón,Colón,Nueva Providencia
-9-1-5,Colón,Colón,Puerto Pilón
-10-1-1,Panamá Oeste,La Chorrera,La Chorrera
-10-1-2,Panamá Oeste,La Chorrera,Barrio Balboa
-10-1-3,Panamá Oeste,La Chorrera,Barrio Colón
-10-1-4,Panamá Oeste,La Chorrera,Amador
-10-1-5,Panamá Oeste,La Chorrera,Arosemena
-10-1-6,Panamá Oeste,La Chorrera,El Arado
-10-1-7,Panamá Oeste,La Chorrera,El Coco
-10-1-8,Panamá Oeste,La Chorrera,Feuillet
-10-1-9,Panamá Oeste,La Chorrera,Guadalupe
-10-1-10,Panamá Oeste,La Chorrera,Herrera
-10-1-11,Panamá Oeste,La Chorrera,Hurtado
-10-1-12,Panamá Oeste,La Chorrera,Iturralde
-10-1-13,Panamá Oeste,La Chorrera,La Represa
-10-1-14,Panamá Oeste,La Chorrera,Los Díaz
-10-1-15,Panamá Oeste,La Chorrera,Mendoza
-10-1-16,Panamá Oeste,La Chorrera,Obaldía
-10-1-17,Panamá Oeste,La Chorrera,Playa Leona
-10-1-18,Panamá Oeste,La Chorrera,Puerto Caimito
-10-1-19,Panamá Oeste,La Chorrera,Santa Rita
-11-1-1,Emberá-Wounaan,Cémaco,Cémaco
-11-1-2,Emberá-Wounaan,Cémaco,Cirilo Guainora
-11-1-3,Emberá-Wounaan,Cémaco,Lajas Blancas
-11-1-4,Emberá-Wounaan,Cémaco,Manuel Ortega
-11-1-5,Emberá-Wounaan,Cémaco,Río Sabalo
-12-1-1,Ngäbe-Buglé,Ñürüm,Ñürüm
-12-1-2,Ngäbe-Buglé,Ñürüm,Alto Caballero
-12-1-3,Ngäbe-Buglé,Ñürüm,Bakama
-12-1-4,Ngäbe-Buglé,Ñürüm,Cerro Banco
-12-1-5,Ngäbe-Buglé,Ñürüm,Cerro Pelado
-12-1-6,Ngäbe-Buglé,Ñürüm,El Bale
-12-1-7,Ngäbe-Buglé,Ñürüm,El Nancito
-12-1-8,Ngäbe-Buglé,Ñürüm,El Piro
-12-1-9,Ngäbe-Buglé,Ñürüm,Guayabito
-12-1-10,Ngäbe-Buglé,Ñürüm,Lajero
-12-1-11,Ngäbe-Buglé,Ñürüm,Lajero Arriba
-12-1-12,Ngäbe-Buglé,Ñürüm,Quebrada Canoa
-12-1-13,Ngäbe-Buglé,Ñürüm,Quebrada Tula
-12-1-14,Ngäbe-Buglé,Ñürüm,Sitio Prado
-12-1-15,Ngäbe-Buglé,Ñürüm,Soloy
-12-1-16,Ngäbe-Buglé,Ñürüm,Sortová
-12-1-17,Ngäbe-Buglé,Ñürüm,Tugrí
-12-1-18,Ngäbe-Buglé,Ñürüm,Alto Caballero
-12-1-19,Ngäbe-Buglé,Ñürüm,Bakama
-12-1-20,Ngäbe-Buglé,Ñürüm,Cerro Banco
-13-1-1,Los Santos,Los Santos,Los Santos
-13-1-2,Los Santos,Los Santos,La Villa de Los Santos
-13-1-3,Los Santos,Los Santos,El Guásimo
-13-1-4,Los Santos,Los Santos,La Espigadilla
-13-1-5,Los Santos,Los Santos,Las Cruces
-13-1-6,Los Santos,Los Santos,Las Tablas
-13-1-7,Los Santos,Los Santos,Llano Abajo
-13-1-8,Los Santos,Los Santos,Llano Largo
-13-1-9,Los Santos,Los Santos,Sabanagrande
-13-1-10,Los Santos,Los Santos,San José
-13-1-11,Los Santos,Los Santos,Santa Ana
-13-1-12,Los Santos,Los Santos,La Tiza
-13-1-13,Los Santos,Los Santos,La Enea
-13-1-14,Los Santos,Los Santos,Tres Quebradas
-13-1-15,Los Santos,Los Santos,El Carate
-13-1-16,Los Santos,Los Santos,La Colorada
-13-1-17,Los Santos,Los Santos,San José de Las Lajas
-13-1-18,Los Santos,Los Santos,El Guásimo de Santa Ana
-13-1-19,Los Santos,Los Santos,El Cedro
-13-1-20,Los Santos,Los Santos,El Manantial
-13-1-21,Los Santos,Los Santos,El Pedregoso
-13-1-22,Los Santos,Los Santos,La Laja
-13-1-23,Los Santos,Los Santos,La Tronosa
-13-1-24,Los Santos,Los Santos,Las Palmas
-13-1-25,Los Santos,Los Santos,Llano de Piedra
-13-1-26,Los Santos,Los Santos,Macaracas
-13-1-27,Los Santos,Los Santos,Mogollón
+8-10-9,Panamá,San Miguelito,Rufina Alfaro
+8-11-1,Panamá,Taboga,Taboga (Cabecera)
+8-11-2,Panamá,Taboga,Otoque Occidente
+8-11-3,Panamá,Taboga,Otoque Oriente
+9-1-1,Veraguas,Atalaya,Atalaya (Cabecera)
+9-1-2,Veraguas,Atalaya,El Barrito
+9-1-3,Veraguas,Atalaya,La Montañuela
+9-1-4,Veraguas,Atalaya,La Carrillo
+9-1-5,Veraguas,Atalaya,San Antonio
+9-2-1,Veraguas,Calobre,Calobre (Cabecera)
+9-2-2,Veraguas,Calobre,Barnizal
+9-2-3,Veraguas,Calobre,Chitra
+9-2-4,Veraguas,Calobre,El Coclá
+9-2-5,Veraguas,Calobre,El Potrero
+9-2-6,Veraguas,Calobre,La Laguna
+9-2-7,Veraguas,Calobre,La Raya de Calobre
+9-2-8,Veraguas,Calobre,La Tetilla
+9-2-9,Veraguas,Calobre,La Yeguada
+9-2-10,Veraguas,Calobre,Las Guías
+9-2-11,Veraguas,Calobre,Monjarás
+9-2-12,Veraguas,Calobre,San José
+9-3-1,Veraguas,Cañazas,Cañazas (Cabecera)
+9-3-2,Veraguas,Cañazas,Cerro de Plata
+9-3-3,Veraguas,Cañazas,El Picador
+9-3-4,Veraguas,Cañazas,Los Valles
+9-3-5,Veraguas,Cañazas,San José
+9-3-6,Veraguas,Cañazas,San Marcelo
+9-3-7,Veraguas,Cañazas,El Aromillo
+9-4-1,Veraguas,La Mesa,La Mesa (Cabecera)
+9-4-2,Veraguas,La Mesa,Bisvalles
+9-4-3,Veraguas,La Mesa,Boró
+9-4-4,Veraguas,La Mesa,Llano Grande
+9-4-5,Veraguas,La Mesa,San Bartolo
+9-4-6,Veraguas,La Mesa,Los Milagros
+9-5-1,Veraguas,Las Palmas,Las Palmas (Cabecera)
+9-5-2,Veraguas,Las Palmas,Cerro de Casa
+9-5-3,Veraguas,Las Palmas,Corozal
+9-5-4,Veraguas,Las Palmas,El María
+9-5-5,Veraguas,Las Palmas,El Prado
+9-5-6,Veraguas,Las Palmas,El Rincón
+9-5-7,Veraguas,Las Palmas,Lolá o Altamira
+9-5-8,Veraguas,Las Palmas,Pixvae
+9-5-9,Veraguas,Las Palmas,Puerto Vidal
+9-5-10,Veraguas,Las Palmas,San Martín de Porres
+9-5-11,Veraguas,Las Palmas,Viguí
+9-5-12,Veraguas,Las Palmas,Zapotillo
+9-6-1,Veraguas,Montijo,Montijo (Cabecera)
+9-6-2,Veraguas,Montijo,Gobernadora
+9-6-3,Veraguas,Montijo,La Garceana
+9-6-4,Veraguas,Montijo,Leones
+9-6-5,Veraguas,Montijo,Pilón
+9-6-6,Veraguas,Montijo,Cébaco
+9-6-7,Veraguas,Montijo,Costa Hermosa
+9-6-8,Veraguas,Montijo,Unión del Norte
+9-7-1,Veraguas,Río de Jesús,Río de Jesús (Cabecera)
+9-7-2,Veraguas,Río de Jesús,Las Huacas
+9-7-3,Veraguas,Río de Jesús,Los Castillos
+9-7-4,Veraguas,Río de Jesús,Utira
+9-7-5,Veraguas,Río de Jesús,14 de Noviembre
+9-8-1,Veraguas,San Francisco,San Francisco (Cabecera)
+9-8-2,Veraguas,San Francisco,Corral Falso
+9-8-3,Veraguas,San Francisco,Los Hatillo
+9-8-4,Veraguas,San Francisco,Remance
+9-8-5,Veraguas,San Francisco,San Juan
+9-8-6,Veraguas,San Francisco,San José
+9-9-1,Veraguas,Santa Fe,Santa Fe
+9-9-2,Veraguas,Santa Fe,Calovébora
+9-9-3,Veraguas,Santa Fe,El Alto
+9-9-4,Veraguas,Santa Fe,El Cuay
+9-9-5,Veraguas,Santa Fe,El Pantano
+9-9-6,Veraguas,Santa Fe,Gatún o Gatuncito
+9-9-7,Veraguas,Santa Fe,Río Luis
+9-10-1,Veraguas,Santiago,Santiago (Cabecera)
+9-10-2,Veraguas,Santiago,Canto del Llano
+9-10-3,Veraguas,Santiago,La Colorada
+9-10-4,Veraguas,Santiago,La Peña
+9-10-5,Veraguas,Santiago,La Raya de Santa María
+9-10-6,Veraguas,Santiago,Ponuga
+9-10-7,Veraguas,Santiago,San Pedro del Espino
+9-10-8,Veraguas,Santiago,Los Algarrobos
+9-10-9,Veraguas,Santiago,Carlos Santana
+9-10-10,Veraguas,Santiago,Edwin Fábrega
+9-10-11,Veraguas,Santiago,San Martín de Porres
+9-10-12,Veraguas,Santiago,Urracá
+9-11-1,Veraguas,Soná,Soná (Cabecera)
+9-11-2,Veraguas,Soná,Bahía Honda
+9-11-3,Veraguas,Soná,Calidonia
+9-11-4,Veraguas,Soná,Cativé
+9-11-5,Veraguas,Soná,El Marañón
+9-11-6,Veraguas,Soná,Guarumal
+9-11-7,Veraguas,Soná,La Soledad
+9-11-8,Veraguas,Soná,Quebrada de Oro
+9-11-9,Veraguas,Soná,Río Grande
+9-11-10,Veraguas,Soná,Rodeo Viejo
+9-12-1,Veraguas,Mariato,Llano de Catival
+9-12-2,Veraguas,Mariato,Arena
+9-12-3,Veraguas,Mariato,El Cacao
+9-12-4,Veraguas,Mariato,Quebro
+9-12-5,Veraguas,Mariato,Tebario

@@ -73,8 +73,9 @@ prueba antes (no recomendado en producción sin plan de migración).
 
 ## 4. Tras instalar: datos y hook
 
-- Tras instalar/actualizar, el **`post_init_hook`** puede fusionar o completar el catálogo de **ubicaciones Panamá** desde `data/hka_ubicaciones.csv` (códigos P–D–C) sin borrar filas existentes de forma agresiva en el flujo actual; si falta el CSV, revise los logs.
-- Vienen precargados datos XML de **CPBS**, **unidades de medida** y códigos de **ubicación** iniciales según los archivos en `data/`.
+- **Ubicaciones DGI (contactos / receptor):** el catálogo **P–D–C** (provincia–distrito–corregimiento) se carga desde `data/hka_ubicaciones.csv` (cientos de filas, alineado al catálogo unificado de referencia DGI) mediante el hook **`post_init`**. Tras **actualizar** el módulo a la versión que incorpora el CSV ampliado, la migración `migrations/19.0.1.6.0/post-reload_ubicaciones_dgi` vuelve a fusionar esos datos.
+- Si faltan filas o el CSV no se encuentra, revise el log del servicio Odoo (mensajes `FE_ETS:`).
+- **CPBS** y **unidades de medida** siguen viniendo de los XML en `data/`.
 
 ## 5. Actualizar el módulo (código nuevo en disco)
 
