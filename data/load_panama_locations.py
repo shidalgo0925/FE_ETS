@@ -225,14 +225,82 @@ def _load_from_csv(env):
     return created_hka + updated_hka
 
 
+def setup_ir_model_access(env):
+    """
+    Crea ``ir.model.access`` por código (antes en ``security/ir.model.access.csv``).
+    Debe ejecutarse en post-init cuando ya existen los ``ir.model`` de los modelos Python.
+    Así el manifiesto no incluye el CSV de seguridad: ``base_import_module`` (importar ZIP)
+    no falla en ese archivo aunque el módulo siga requiriendo instalación por ``addons_path``
+    para que el código Python quede registrado.
+    """
+    env = env.sudo()
+    Access = env['ir.model.access']
+    IModel = env['ir.model']
+
+    def _mid(model_name):
+        m = IModel.search([('model', '=', model_name)], limit=1)
+        return m.id if m else None
+
+    def _ensure(name, model_name, group_xml, read_, write_, create_, unlink_):
+        mid = _mid(model_name)
+        if not mid:
+            _logger.warning('FE_ETS: ir.model para %s no encontrado; omitiendo ACL %s', model_name, name)
+            return
+        try:
+            group = env.ref(group_xml)
+        except ValueError:
+            _logger.warning('FE_ETS: grupo %s no encontrado; omitiendo ACL %s', group_xml, name)
+            return
+        if Access.search(
+            [
+                ('name', '=', name),
+                ('model_id', '=', mid),
+                ('group_id', '=', group.id),
+            ],
+            limit=1,
+        ):
+            return
+        Access.create(
+            {
+                'name': name,
+                'model_id': mid,
+                'group_id': group.id,
+                'perm_read': bool(read_),
+                'perm_write': bool(write_),
+                'perm_create': bool(create_),
+                'perm_unlink': bool(unlink_),
+            }
+        )
+
+    inv = 'account.group_account_invoice'
+    mgr = 'account.group_account_manager'
+    # (name, model, group, r, w, c, u)
+    rules = [
+        ('hka.document.user', 'hka.document', inv, 1, 1, 1, 0),
+        ('hka.document.manager', 'hka.document', mgr, 1, 1, 1, 1),
+        ('hka.cancel.wizard.user', 'hka.cancel.wizard', inv, 1, 1, 1, 1),
+        ('hka.codigo.ubicacion.user', 'hka.codigo.ubicacion', inv, 1, 0, 0, 0),
+        ('hka.codigo.ubicacion.manager', 'hka.codigo.ubicacion', mgr, 1, 1, 1, 1),
+        ('hka.cpbs.user', 'hka.cpbs', inv, 1, 0, 0, 0),
+        ('hka.cpbs.manager', 'hka.cpbs', mgr, 1, 1, 1, 1),
+        ('hka.unidad.medida.user', 'hka.unidad.medida', inv, 1, 0, 0, 0),
+        ('hka.unidad.medida.manager', 'hka.unidad.medida', mgr, 1, 1, 1, 1),
+    ]
+    for name, model, gxml, *perms in rules:
+        _ensure(name, model, gxml, *perms)
+    _logger.info('FE_ETS: Permisos ir.model.access comprobados/creados (post_init).')
+
+
 def load_panama_locations(env):
     """
     Post-init hook: secuencia completa para facturación electrónica (solo en instalación).
+    0. ir.model.access (sustituye al CSV de seguridad)
     1. Provincias (res.country.state)
     2. Distritos (paso explícito; datos en hka.codigo.ubicacion)
     3. Corregimientos (paso explícito; datos en hka.codigo.ubicacion)
-    4. Códigos HKA (CSV + XML, idempotente)
+    4. Códigos P-D-C (CSV, idempotente)
     """
+    setup_ir_model_access(env)
     _ensure_panama_states(env)
     _ensure_panama_districts(env)
     _ensure_panama_corregimientos(env)
