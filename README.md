@@ -1,4 +1,4 @@
-# ETS Facturación Electrónica Panamá - HKA
+# FE_ETS (Panamá) — HKA
 
 Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado con **The Factory HKA Corp** (proveedor autorizado ante la DGI).
 
@@ -24,7 +24,7 @@ Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado c
 - **Configuración:** Credenciales HKA por compañía (demo/producción), envío automático opcional al validar.
 - **Envío a DGI:** Botón *Enviar a DGI* en facturas y notas de crédito/débito validadas.
 - **Anulación:** Botón *Anular en DGI* → wizard para indicar motivo → solo si la factura está autorizada y no tiene nota de crédito asociada.
-- **Documentos:** Historial en *Facturación Electrónica → Documentos Electrónicos* (CUFE, estado, PDF).
+- **Documentos:** Historial en *FE_ETS* / documento electrónico (CUFE, estado, PDF) según pantallas del módulo.
 - **Ubicaciones:** Carga desde CSV (`data/hka_ubicaciones.csv`) según catálogo DGI/HKA; una sola fuente para evitar errores de código.
 - **Contactos:** Tipo de cliente (contribuyente/consumidor final), RUC y código de ubicación para FE.
 
@@ -64,7 +64,7 @@ https://github.com/shidalgo0925/FE_ETS/raw/main/FE_ETS_Odoo19.zip
 
 - **Soporte y contacto:** [Easy Technology Services](https://easytech.services)
 - **Código fuente:** [GitHub – FE_ETS](https://github.com/shidalgo0925/FE_ETS)
-- **Odoo 18** · Facturación electrónica Panamá · The Factory HKA · DGI
+- **Odoo 19** · FE Panamá · The Factory HKA · DGI
 
 ---
 

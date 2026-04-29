@@ -23,7 +23,7 @@
     </record>
 
     <record id="action_hka_cpbs" model="ir.actions.act_window">
-        <field name="name">CPBS (Facturación electrónica)</field>
+        <field name="name">CPBS (FE Panamá)</field>
         <field name="res_model">hka.cpbs</field>
         <field name="view_mode">list,form</field>
     </record>

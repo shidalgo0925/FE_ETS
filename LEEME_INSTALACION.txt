@@ -1,5 +1,5 @@
 ================================================================================
-  FE_ETS — Facturación Electrónica (Panamá) / Odoo 19
+  FE_ETS (Panamá) / Odoo 19
 ================================================================================
 
 NO USE: Aplicaciones > Importar módulo (archivo ZIP)

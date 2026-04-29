@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 HKA Factory API Client
-Integración con The Factory HKA para Facturación Electrónica de Panamá
+Integración con The Factory HKA para FE Panamá (DGI).
 """
 
 import logging

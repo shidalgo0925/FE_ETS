@@ -253,7 +253,7 @@ class AccountMove(models.Model):
 
         codigo_ubicacion = self._get_partner_codigo_ubicacion_texto(partner)
         if not codigo_ubicacion and tipo_cliente in ("01", "03"):
-            raise UserError(_("El cliente no tiene código de ubicación DGI. Selecciónelo del catálogo en el contacto (Facturación electrónica)."))
+            raise UserError(_("El cliente no tiene código de ubicación DGI. Selecciónelo del catálogo en el contacto (FE_ETS)."))
         if not codigo_ubicacion:
             codigo_ubicacion = "8-8-1"
         codigo_ubicacion = self._normalize_codigo_ubicacion_pdc(codigo_ubicacion)
@@ -680,7 +680,7 @@ class AccountMove(models.Model):
                     body=_("✅ <b>Factura enviada automáticamente (facturación electrónica)</b><br/>"
                           "CUFE: <b>%s</b><br/>"
                           "Estado: <b>Autorizado</b>") % data.get('cufe'),
-                    subject=_("Facturación Electrónica Automática")
+                    subject=_("FE_ETS — envío automático")
                 )
         else:
             hka_doc_vals['state'] = 'rejected'
@@ -826,7 +826,7 @@ class AccountMove(models.Model):
                 invoice.message_post(
                     body=_("⚠️ <b>Error al enviar automáticamente el documento electrónico:</b><br/>%s<br/><br/>"
                           "Puede intentar enviar manualmente usando el botón 'Enviar a DGI'.") % str(e),
-                    subject=_("Error Facturación Electrónica Automática")
+                    subject=_("Error FE_ETS — envío automático")
                 )
             except Exception as e:
                 # Cualquier otro error, registrar en log y chatter
@@ -834,7 +834,7 @@ class AccountMove(models.Model):
                 invoice.message_post(
                     body=_("⚠️ <b>Error inesperado al enviar automáticamente el documento electrónico:</b><br/>%s<br/><br/>"
                           "Puede intentar enviar manualmente usando el botón 'Enviar a DGI'.") % str(e),
-                    subject=_("Error Facturación Electrónica Automática")
+                    subject=_("Error FE_ETS — envío automático")
                 )
         
         return posted

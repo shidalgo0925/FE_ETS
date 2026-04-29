@@ -56,14 +56,14 @@
                                decoration-danger="hka_state in ['rejected', 'cancelled']"
                                decoration-warning="hka_state == 'sent'"
                                decoration-info="hka_state == 'draft'"/>
-                        <span class="o_stat_text">Factura Electrónica</span>
+                        <span class="o_stat_text">FE_ETS</span>
                     </div>
                 </button>
             </xpath>
             
-            <!-- Agregar pestaña de facturación electrónica -->
+            <!-- Pestaña campos DGI / HKA -->
             <xpath expr="//page[@name='other_info']" position="after">
-                <page string="Facturación Electrónica" name="factulectronic" 
+                <page string="FE_ETS (Panamá)" name="factulectronic" 
                       invisible="move_type not in ['out_invoice', 'out_refund']">
                     <group>
                         <group string="Datos del Documento">

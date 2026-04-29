@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'FE_ETS (Panamá)',
-    'version': '19.0.1.6.6',
+    'version': '19.0.1.6.7',
     'category': 'Accounting/Localizations/EDI',
     'summary': (
         'Odoo 19: facturación electrónica Panamá (DGI) — emisión, envío y seguimiento de '
