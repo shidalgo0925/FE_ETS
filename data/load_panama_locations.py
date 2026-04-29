@@ -234,7 +234,8 @@ def setup_ir_model_access(env):
     no falla en ese archivo aunque el módulo siga requiriendo instalación por ``addons_path``
     para que el código Python quede registrado.
     """
-    env = env.sudo()
+    # Odoo 19: Environment.sudo() eliminado; usar env(su=True).
+    env = env(su=True)
     Access = env['ir.model.access']
     IModel = env['ir.model']
 
@@ -301,7 +302,7 @@ def load_hka_data_catalogs_from_xml_files(env):
     Comportamiento idempotente: si ya existe un registro con el mismo ``code``, no duplica.
     """
     data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-    env = env.sudo()
+    env = env(su=True)
 
     def _load_file(xml_name, model_xmlid):
         creados = 0
