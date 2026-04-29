@@ -36,12 +36,12 @@ Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado c
 
 ## Instalación
 
-**Paquete ZIP (Odoo 19):** descarga directa desde el repo —  
+**Paquete ZIP (Odoo 19):** descarga directa —  
 https://github.com/shidalgo0925/FE_ETS/raw/main/FE_ETS_Odoo19.zip  
 
-Descomprime en una carpeta incluida en `addons_path` (debe quedar `.../FE_ETS/__manifest__.py`).
+**No use “Aplicaciones → Importar módulo” con el ZIP.** Esa opción (`base_import_module`) solo aplica datos; **no instala el código Python** del addon. Aquí los modelos (`hka.*`, etc.) están en `models/`, así que Odoo debe cargarlos desde el disco: descomprima el ZIP en una ruta que esté en `addons_path` (debe existir `.../FE_ETS/__manifest__.py`), **reinicie el servicio Odoo** y luego instale el módulo desde Aplicaciones como siempre.
 
-1. Añadir la carpeta `FE_ETS` a la ruta de addons de Odoo.
+1. Añadir la carpeta `FE_ETS` (o el padre) a `addons_path` y reiniciar Odoo.
 2. Reiniciar Odoo (o actualizar lista de aplicaciones).
 3. En **Apps**, buscar *ETS Facturación Electrónica Panamá* e **Instalar**.
 

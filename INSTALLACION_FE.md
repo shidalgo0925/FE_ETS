@@ -24,6 +24,8 @@ Reiniciar el servicio de Odoo tras instalar paquetes.
 
 ## 2. Instalar el código del addon
 
+**No importe el ZIP con “Aplicaciones → Importar módulo”.** Ese asistente no carga archivos `.py`; fallará en `ir.model.access` porque los modelos no existen. Descomprima el ZIP (o clone el repo) en el **sistema de archivos** del servidor y use `addons_path` como abajo.
+
 1. Copie o despliegue la carpeta del módulo en el servidor, por ejemplo:
 
    `/opt/ETS/odoo19/custom-addons/fe_panama/FE_ETS`
