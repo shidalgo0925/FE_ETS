@@ -42,8 +42,22 @@
                             <field name="hka_entrega_cafe" string="Entrega CAFE"/>
                         </group>
                         <group string="Licencia">
-                            <p class="text-muted small" colspan="2">Información de la licencia del servicio de facturación</p>
-                            <field name="hka_numero_licencia" string="Número de Licencia"/>
+                            <p class="text-muted small" colspan="2">Validación comercial de licencia FE_ETS contra servidor ETS.</p>
+                            <field name="hka_license_key" string="Codigo de licencia"/>
+                            <field name="hka_license_server_url" string="URL servidor licencias"/>
+                            <field name="hka_license_server_token" string="Token servidor licencias" password="True" force_save="1"/>
+                            <field name="hka_license_status" string="Estado" widget="badge"
+                                   decoration-success="hka_license_status == 'active'"
+                                   decoration-warning="hka_license_status == 'grace'"
+                                   decoration-danger="hka_license_status in ['expired','suspended','invalid']"/>
+                            <field name="hka_license_message" string="Mensaje" readonly="1"/>
+                            <field name="hka_license_expires_at" string="Expira" readonly="1"/>
+                            <field name="hka_license_last_check" string="Última validación" readonly="1"/>
+                            <field name="hka_license_grace_until" string="Gracia hasta" readonly="1"/>
+                            <button name="action_hka_activate_license" type="object" string="Activar licencia" class="btn-primary" colspan="2"/>
+                            <button name="action_hka_revalidate_license" type="object" string="Revalidar" class="btn-secondary" colspan="2"/>
+                            <separator string="Licencia PAC / Folios (legacy)"/>
+                            <field name="hka_numero_licencia" string="Número de Licencia PAC"/>
                             <field name="hka_folios_disponibles" string="Folios Disponibles" readonly="1"/>
                             <field name="hka_ultima_sincronizacion" string="Última Sincronización" readonly="1"/>
                         </group>
