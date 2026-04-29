@@ -137,6 +137,7 @@ class HKADocument(models.Model):
     def action_download_xml(self):
         """Descarga el XML del documento"""
         self.ensure_one()
+        (self.company_id or self.env.company).ensure_hka_license_allows_operation('descarga XML')
         if self.xml_file:
             return {
                 'type': 'ir.actions.act_url',
@@ -169,6 +170,7 @@ class HKADocument(models.Model):
     def action_download_pdf(self):
         """Descarga el PDF del documento"""
         self.ensure_one()
+        (self.company_id or self.env.company).ensure_hka_license_allows_operation('descarga PDF')
         if self.pdf_file:
             return {
                 'type': 'ir.actions.act_url',
@@ -217,18 +219,13 @@ class HKADocument(models.Model):
 
     def _download_from_hka(self, tipo):
         """Descarga documento desde HKA"""
-        from .hka_api import HKAApiClient
         import base64
         import logging
         
         _logger = logging.getLogger(__name__)
         
         company = self.company_id or self.env.company
-        client = HKAApiClient(
-            company.hka_usuario,
-            company.hka_clave,
-            company.hka_ambiente
-        )
+        client = company._get_hka_client()
         
         result = client.descargar_documento(self.cufe, tipo)
         
@@ -296,14 +293,9 @@ class HKADocument(models.Model):
     def action_check_status(self):
         """Consulta el estado del documento en HKA"""
         self.ensure_one()
-        from .hka_api import HKAApiClient
-        
         company = self.company_id or self.env.company
-        client = HKAApiClient(
-            company.hka_usuario,
-            company.hka_clave,
-            company.hka_ambiente
-        )
+        company.ensure_hka_license_allows_operation('consulta de estado')
+        client = company._get_hka_client()
         
         result = client.consultar_estado(self.cufe)
         

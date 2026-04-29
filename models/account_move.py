@@ -527,6 +527,7 @@ class AccountMove(models.Model):
             raise UserError(_('Esta factura ya fue enviada electrónicamente.'))
 
         company = self.company_id or self.env.company
+        company.ensure_hka_license_allows_operation(_('envío a DGI'))
         company_ruc = _normalize_ruc(company.hka_ruc or company.vat)
         if not _is_valid_ruc(company_ruc):
             raise UserError(_(
@@ -690,6 +691,7 @@ class AccountMove(models.Model):
     def action_cancel_dgi(self):
         """Anula la factura en la DGI vía API HKA."""
         for move in self:
+            (move.company_id or move.env.company).ensure_hka_license_allows_operation(_('anulación en DGI'))
             if move.move_type not in ('out_invoice', 'out_refund'):
                 raise UserError(_('Solo se pueden anular facturas o notas de crédito/débito de venta.'))
             if move.state != 'posted':
@@ -735,6 +737,7 @@ class AccountMove(models.Model):
     def action_reprint_fiscal(self):
         """Descarga el PDF fiscal generado por HKA."""
         self.ensure_one()
+        (self.company_id or self.env.company).ensure_hka_license_allows_operation(_('descarga de documento'))
         if not self.hka_document_id:
             raise UserError(_('No hay documento fiscal electrónico asociado.'))
         return self.hka_document_id.action_download_pdf()
