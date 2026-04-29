@@ -9,6 +9,13 @@ Los modelos hka.*, ampliación de res.company, facturas, etc. NO existen. La
 importación fallará en las VISTAS (campos hka.* inexistentes) aunque otros
 archivos de datos dejen de bloquear. Única solución: instalar por addons_path.
 
+SI VE: "El campo hka_ambiente no existe en el modelo res.company"
+( u otro hka_* en res.company, account.move, product.template, etc.)
+------------------------------------------------------------------
+Ese mensaje al importar el ZIP es NORMAL: no se carga models/res_company.py
+ni el resto del Python del addon. No se puede corregir el ZIP; debe instalar
+como en "INSTALACIÓN VÁLIDA" (carpeta en addons_path, reiniciar, instalar).
+
 INSTALACIÓN VÁLIDA
 -----------------
 1) Descomprima este ZIP en el SERVIDOR donde corre Odoo.
