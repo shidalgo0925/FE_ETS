@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hka_codigo_ubicacion_list" model="ir.ui.view">
+        <field name="name">hka.codigo.ubicacion.list</field>
+        <field name="model">hka.codigo.ubicacion</field>
+        <field name="arch" type="xml">
+            <list string="Códigos de ubicación Panamá (DGI)" create="false" edit="false" delete="false">
+                <field name="codigo"/>
+                <field name="provincia"/>
+                <field name="distrito"/>
+                <field name="corregimiento"/>
+                <field name="activo"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_hka_codigo_ubicacion" model="ir.actions.act_window">
+        <field name="name">Códigos de ubicación (Panamá)</field>
+        <field name="res_model">hka.codigo.ubicacion</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[('activo', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Catálogo unificado de provincia, distrito y corregimiento (código P-D-C) según DGI Panamá.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hka_codigo_ubicacion"
+              name="Códigos ubicación Panamá (FE)"
+              parent="account.account_invoicing_menu"
+              action="action_hka_codigo_ubicacion"
+              sequence="35"
+              groups="account.group_account_invoice"/>
+</odoo>

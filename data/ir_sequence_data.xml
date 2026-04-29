@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_hka_documento_fiscal" model="ir.sequence">
+            <field name="name">Documento fiscal FE (ETS)</field>
+            <field name="code">hka.documento.fiscal</field>
+            <field name="prefix"/>
+            <field name="padding">10</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

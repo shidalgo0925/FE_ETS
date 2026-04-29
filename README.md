@@ -4,10 +4,10 @@ Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado c
 
 | | |
 |---|---|
-| **Autor** | Easytech Services |
+| **Autor** | Easy Technology Services |
 | **Web** | https://easytech.services |
-| **Repositorio** | https://github.com/shidalgo0925/FE_HKA_OCI |
-| **Licencia** | LGPL-3 |
+| **Repositorio** | https://github.com/shidalgo0925/FE_ETS |
+| **Licencia** | Other proprietary |
 | **Versión** | 18.0.1.1.0 |
 | **Última actualización** | Marzo 2026 |
 
@@ -36,7 +36,7 @@ Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado c
 
 ## Instalación
 
-1. Añadir la carpeta `FE_HKA_OCI` a la ruta de addons de Odoo.
+1. Añadir la carpeta `FE_ETS` a la ruta de addons de Odoo.
 2. Reiniciar Odoo (o actualizar lista de aplicaciones).
 3. En **Apps**, buscar *ETS Facturación Electrónica Panamá* e **Instalar**.
 
@@ -55,10 +55,10 @@ Módulo de **Odoo 18** para emitir facturas electrónicas en Panamá integrado c
 
 ## Dónde encontrarnos
 
-- **Soporte y contacto:** [Easytech Services](https://easytech.services)
-- **Código fuente:** [GitHub – FE_HKA_OCI](https://github.com/shidalgo0925/FE_HKA_OCI)
+- **Soporte y contacto:** [Easy Technology Services](https://easytech.services)
+- **Código fuente:** [GitHub – FE_ETS](https://github.com/shidalgo0925/FE_ETS)
 - **Odoo 18** · Facturación electrónica Panamá · The Factory HKA · DGI
 
 ---
 
-Desarrollado por **Easytech Services** · https://easytech.services
+Desarrollado por **Easy Technology Services** · https://easytech.services

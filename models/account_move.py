@@ -34,7 +34,7 @@ class AccountMove(models.Model):
     # Campos de facturación electrónica
     hka_document_id = fields.Many2one(
         'hka.document',
-        string='Documento HKA',
+        string='Documento fiscal electrónico',
         copy=False
     )
     
@@ -187,7 +187,43 @@ class AccountMove(models.Model):
         if len(digits) in (10, 11, 12):
             return f"{digits[-8:-4]}-{digits[-4:]}" if len(digits) >= 8 else None
         return None
-    
+
+    def _get_hka_direccion_receptor(self, partner):
+        """Línea de dirección para HKA (p. ej. 1606). Calle 1 + calle 2; si vacío, intenta contacto padre."""
+        bits = []
+        for fld in ('street', 'street2'):
+            v = getattr(partner, fld, None)
+            if v and str(v).strip():
+                bits.append(str(v).strip())
+        direccion = ', '.join(bits) if bits else ''
+        direccion = direccion.strip()
+        if direccion:
+            return direccion[:250]
+        if partner.parent_id:
+            return self._get_hka_direccion_receptor(partner.parent_id)
+        return ''
+
+    def _get_partner_ruc_texto(self, partner):
+        """RUC tal como lo cargó el usuario (pa_ruc preferente sobre VAT/NIF)."""
+        return (partner.pa_ruc or partner.vat or '').strip()
+
+    def _get_partner_codigo_ubicacion_texto(self, partner):
+        """Misma fuente en todo el flujo: catálogo Many2one o campos texto legacy."""
+        ub = partner.pa_codigo_ubicacion_id
+        if ub:
+            return (ub.codigo or '').strip()
+        return (partner.hka_codigo_ubicacion or partner.pa_codigo_ubicacion or '').strip()
+
+    def _normalize_codigo_ubicacion_pdc(self, codigo_ubicacion):
+        """Convierte 080806 → 8-8-6 si aplica; si no, devuelve el texto recortado."""
+        if not codigo_ubicacion:
+            return ''
+        codigo_ubicacion = codigo_ubicacion.strip()
+        codigo_limpio = re.sub(r'[^\d]', '', codigo_ubicacion)
+        if len(codigo_limpio) == 6 and '-' not in codigo_ubicacion:
+            return f"{int(codigo_limpio[0:2])}-{int(codigo_limpio[2:4])}-{int(codigo_limpio[4:6])}"
+        return codigo_ubicacion
+
     def _get_hka_client(self):
         """Obtiene el cliente de la API HKA"""
         from .hka_api import HKAApiClient
@@ -195,7 +231,7 @@ class AccountMove(models.Model):
         company = self.company_id or self.env.company
         
         if not company.hka_usuario or not company.hka_clave:
-            raise UserError(_('Configure las credenciales de HKA en Ajustes.'))
+            raise UserError(_('Configure las credenciales del servicio en Ajustes → Empresa (facturación electrónica).'))
         
         return HKAApiClient(
             company.hka_usuario,
@@ -203,115 +239,44 @@ class AccountMove(models.Model):
             company.hka_ambiente
         )
     
-    # def _prepare_hka_cliente(self):
-    #     """Prepara los datos del cliente para HKA"""
-    #     self.ensure_one()
-    #     partner = self.partner_id
-
-    #     tipo_cliente = partner.pa_tipo_cliente_fe or "02"
-
-    #     # =========================
-    #     # RUC
-    #     # =========================
-    #     ruc = partner.pa_ruc or partner.vat or ""
-    #     ruc = ruc.strip() if ruc else ""
-
-    #     # Consumidor Final sin RUC → enviar 00000
-    #     if tipo_cliente == "02" and not ruc:
-    #         ruc = "00000"
-
-    #     # =========================
-    #     # Tipo Contribuyente
-    #     # =========================
-    #     if tipo_cliente == "04":
-    #         tipo_contribuyente_hka = None
-    #     elif tipo_cliente == "02":
-    #         tipo_contribuyente_hka = "1"
-    #     else:
-    #         tipo_contribuyente_hka = partner.pa_tipo_ruc or "2"
-
-    #     # =========================
-    #     # Construcción base cliente
-    #     # =========================
-    #     cliente_data = {
-    #         "tipoClienteFE": str(tipo_cliente),
-    #         "numeroRUC": str(ruc),
-    #         "digitoVerificadorRUC": str(partner.pa_dv) if partner.pa_dv else "",
-    #         "razonSocial": str(partner.name) if partner.name else "",
-    #         "direccion": str(partner.street) if partner.street else "",
-    #         "provincia": str(partner.state_id.name) if partner.state_id and partner.state_id.name else "",
-    #         "distrito": str(partner.city) if partner.city else "",
-    #         "corregimiento": str(partner.pa_corregimiento) if partner.pa_corregimiento else "",
-    #         "correoElectronico1": str(partner.email) if partner.email else "",
-    #         "telefono1": self._clean_phone_for_hka(partner.phone) if partner.phone else "",
-    #         "pais": str(partner.country_id.code) if partner.country_id and partner.country_id.code else "PA",
-    #     }
-
-    #     if tipo_contribuyente_hka is not None:
-    #         cliente_data["tipoContribuyente"] = str(tipo_contribuyente_hka)
-
-    #     # =========================
-    #     # Código Ubicación NORMALIZADO (ACEPTA 8-8-6 y 08-08-06)
-    #     # =========================
-    #     if partner.pa_codigo_ubicacion_id:
-    #         codigo = partner.pa_codigo_ubicacion_id.codigo
-    #     else:
-    #         codigo = partner.pa_codigo_ubicacion
-
-    #     if codigo:
-    #         codigo = codigo.strip()
-
-    #         import re
-    #         match = re.match(r'^(\d{1,2})-(\d{1,2})-(\d{1,2})$', codigo)
-
-    #         # if match:
-    #         #     # Convertir a formato limpio sin ceros a la izquierda
-    #         #     provincia = str(int(match.group(1)))
-    #         #     distrito = str(int(match.group(2)))
-    #         #     corregimiento = str(int(match.group(3)))
-
-    #         #     codigo_normalizado = f"{provincia}-{distrito}-{corregimiento}"
-    #         #     cliente_data["codigoUbicacion"] = codigo_normalizado
-    #         # else:
-    #         #     raise UserError(
-    #         #         _("El Código de Ubicación debe tener formato N-N-N "
-    #         #         "(ej: 8-8-6 o 08-08-06).")
-    #         #     )
-                
-    #         # ==========================================
-    #         # HARDCODE TEMPORAL PARA PRUEBA
-    #         # ==========================================
-    #         cliente_data["codigoUbicacion"] = "8-8-6"
-    #         _logger.warning("⚠️ codigoUbicacion HARDCODEADO a 8-8-6 para prueba")
-
-    #     return cliente_data
-
     def _prepare_hka_cliente(self):
-        """Prepara los datos del cliente para HKA. RUC normalizado y validado (evitar 1601/1602)."""
+        """Prepara datos del receptor para HKA.
+
+        `numeroRUC` y `digitoVerificadorRUC` se toman del contacto tal cual (sin pasar a solo dígitos
+        ni cambiar el tipo de cliente por validaciones locales). La respuesta 1601/1602 depende de DGI/HKA.
+        """
         self.ensure_one()
         partner = self.partner_id
         tipo_cliente = partner.pa_tipo_cliente_fe or "02"
 
-        ruc = _normalize_ruc(partner.vat or partner.pa_ruc)
-        ruc_valido = ruc and _is_valid_ruc(ruc)
+        ruc_texto = self._get_partner_ruc_texto(partner)
 
-        # Código Ubicación: no modificar (instrucción)
-        codigo_ubicacion = (partner.hka_codigo_ubicacion or "").strip()
+        codigo_ubicacion = self._get_partner_codigo_ubicacion_texto(partner)
         if not codigo_ubicacion and tipo_cliente in ("01", "03"):
-            raise UserError(_("El cliente no tiene código de ubicación HKA. Configúrelo en el contacto."))
+            raise UserError(_("El cliente no tiene código de ubicación DGI. Selecciónelo del catálogo en el contacto (Facturación electrónica)."))
         if not codigo_ubicacion:
             codigo_ubicacion = "8-8-1"
-        codigo_limpio = re.sub(r'[^\d]', '', codigo_ubicacion)
-        if len(codigo_limpio) == 6 and '-' not in codigo_ubicacion:
-            codigo_ubicacion = f"{int(codigo_limpio[0:2])}-{int(codigo_limpio[2:4])}-{int(codigo_limpio[4:6])}"
+        codigo_ubicacion = self._normalize_codigo_ubicacion_pdc(codigo_ubicacion)
+
+        ub = partner.pa_codigo_ubicacion_id
+        if ub:
+            provincia_txt = ub.provincia or ""
+            distrito_txt = ub.distrito or ""
+            corregimiento_txt = ub.corregimiento or ""
+        else:
+            provincia_txt = partner.state_id.name if partner.state_id else ""
+            distrito_txt = partner.city or ""
+            corregimiento_txt = partner.pa_corregimiento or ""
+
+        direccion_hka = self._get_hka_direccion_receptor(partner)
 
         cliente_data = {
             "codigoUbicacion": codigo_ubicacion,
             "razonSocial": str(partner.name) if partner.name else "",
-            "direccion": str(partner.street) if partner.street else "",
-            "provincia": str(partner.state_id.name) if partner.state_id and partner.state_id.name else "",
-            "distrito": str(partner.city) if partner.city else "",
-            "corregimiento": str(partner.pa_corregimiento) if partner.pa_corregimiento else "",
+            "direccion": direccion_hka,
+            "provincia": str(provincia_txt) if provincia_txt else "",
+            "distrito": str(distrito_txt) if distrito_txt else "",
+            "corregimiento": str(corregimiento_txt) if corregimiento_txt else "",
             "correoElectronico1": str(partner.email) if partner.email else "",
             "pais": str(partner.country_id.code) if partner.country_id and partner.country_id.code else "PA",
         }
@@ -326,21 +291,13 @@ class AccountMove(models.Model):
             cliente_data.pop("telefono1", None)
         elif tipo_cliente == "04":
             cliente_data["tipoClienteFE"] = "04"
-            cliente_data["numeroRUC"] = ruc if ruc_valido else "0"
+            cliente_data["numeroRUC"] = ruc_texto or "0"
+            cliente_data["digitoVerificadorRUC"] = str(partner.pa_dv or "").strip()
         else:
-            if not ruc_valido:
-                cliente_data["tipoClienteFE"] = "02"
-                cliente_data["numeroRUC"] = "00000"
-                cliente_data["tipoContribuyente"] = "1"
-                cliente_data.pop("telefono1", None)
-            else:
-                cliente_data["tipoClienteFE"] = str(tipo_cliente)
-                cliente_data["numeroRUC"] = ruc
-                cliente_data["tipoContribuyente"] = partner.pa_tipo_ruc or "2"
-                if partner.pa_dv:
-                    cliente_data["digitoVerificadorRUC"] = str(partner.pa_dv).strip()
-                else:
-                    cliente_data["digitoVerificadorRUC"] = ""
+            cliente_data["tipoClienteFE"] = str(tipo_cliente)
+            cliente_data["numeroRUC"] = ruc_texto
+            cliente_data["tipoContribuyente"] = partner.pa_tipo_ruc or "2"
+            cliente_data["digitoVerificadorRUC"] = str(partner.pa_dv or "").strip()
 
         return cliente_data
    
@@ -363,14 +320,29 @@ class AccountMove(models.Model):
             # CPBS: DGI XML usa dCodCPBScmp (4 chars) y dCodCPBSabr (2 chars). HKA valida esas longitudes.
             tmpl = product.product_tmpl_id
             cpbs_rec = tmpl.hka_cpbs_id or (tmpl.categ_id and tmpl.categ_id.hka_cpbs_id)
-            raw_cpbs = (cpbs_rec.code or "99990000").strip() if cpbs_rec else "99990000"
-            base_8 = raw_cpbs.zfill(8)[:8]
-            codigo_cpbs = base_8[:4]
-            codigo_cpbs_abrev = base_8[:2]
+            if not cpbs_rec or not (cpbs_rec.code or '').strip():
+                raise UserError(_(
+                    "El producto '%(prod)s' no tiene CPBS configurado. "
+                    "Defínalo en Inventario > Productos (o en su Categoría) en los campos de facturación electrónica (ETS / Panamá)."
+                ) % {'prod': product.display_name})
+
+            raw_cpbs = re.sub(r'[^A-Za-z0-9]', '', (cpbs_rec.code or '').strip().upper())
+            if len(raw_cpbs) < 4:
+                raise UserError(_(
+                    "El CPBS '%(cpbs)s' del producto '%(prod)s' es inválido. "
+                    "Debe tener al menos 4 caracteres alfanuméricos para construir codigoCPBS/codigoCPBSAbrev."
+                ) % {'cpbs': cpbs_rec.code, 'prod': product.display_name})
+
+            codigo_cpbs = raw_cpbs[:4]
+            codigo_cpbs_abrev = raw_cpbs[:2]
 
             # Unidad de medida: desde catálogo hka.unidad.medida del producto
             uom_hka = tmpl.hka_unidad_medida_id
-            unidad_medida = (uom_hka.code or "und").strip() if uom_hka else "und"
+            if not uom_hka or not (uom_hka.code or '').strip():
+                raise UserError(_(
+                    "El producto '%(prod)s' no tiene unidad de medida DGI configurada."
+                ) % {'prod': product.display_name})
+            unidad_medida = (uom_hka.code or '').strip()
 
             # Tipo Item
             tipo_item = "S" if product.type == "service" else "B"
@@ -559,54 +531,45 @@ class AccountMove(models.Model):
             raise UserError(_('La factura debe estar validada para enviarla.'))
         
         if self.hka_cufe:
-            raise UserError(_('Esta factura ya fue enviada a HKA.'))
+            raise UserError(_('Esta factura ya fue enviada electrónicamente.'))
 
         company = self.company_id or self.env.company
         company_ruc = _normalize_ruc(company.hka_ruc or company.vat)
         if not _is_valid_ruc(company_ruc):
-            raise UserError(_("El RUC de la empresa no tiene formato válido para DGI. Use formato con guiones (ej: 155677155-2-2023)."))
+            raise UserError(_(
+                "El RUC del emisor no cumple el formato DGI (guiones obligatorios).\n\n"
+                "Empresa: %(name)s\n"
+                "Valor leído (RUC emisor o NIF/VAT de la compañía): %(ruc)s\n\n"
+                "Configure en Ajustes → Empresas → «%(name)s» el campo «RUC emisor (DGI)» o el NIF/VAT.\n"
+                "Ejemplo solo de formato (no es su número): 155677155-2-2023."
+            ) % {"name": company.name, "ruc": company_ruc or _("(vacío)")})
         
         # Validar datos del cliente antes de enviar
         partner = self.partner_id
         if not partner:
             raise UserError(_('La factura debe tener un cliente asignado.'))
         
-        # Validar RUC si es contribuyente
         tipo_cliente = partner.pa_tipo_cliente_fe or "02"
-        if tipo_cliente == "01":  # Contribuyente
-            ruc = partner.pa_ruc or partner.vat or ""
-            ruc_limpio = ruc.replace("-", "").replace(" ", "").strip() if ruc else ""
-            # RUC panameño tiene formato: 8-382-685 (7 dígitos) o similar
-            # Validar que tenga al menos 7 dígitos
-            if not ruc_limpio or len(ruc_limpio) < 7:
-                raise UserError(_('El cliente contribuyente debe tener un RUC válido configurado (mínimo 7 dígitos).'))
-        
-        # Validar codigoUbicacion - CRÍTICO PARA CONTRIBUYENTES
-        # El código debe estar registrado en HKA Factory y coincidir EXACTAMENTE
-        # NO transformar, NO formatear - enviar tal cual del portal
-        # Priorizar Many2one si existe, sino usar campo Char legacy
-        if partner.pa_codigo_ubicacion_id:
-            codigo_ubicacion = partner.pa_codigo_ubicacion_id.codigo
-        else:
-            codigo_ubicacion = partner.pa_codigo_ubicacion
+
+        if tipo_cliente in ("01", "03"):
+            ruc = (partner.pa_ruc or partner.vat or "").strip()
+            if not ruc:
+                raise UserError(_('Indique el RUC del receptor en el contacto (RUC Panamá o NIF/VAT).'))
+
+        codigo_ubicacion = self._get_partner_codigo_ubicacion_texto(partner)
+        if codigo_ubicacion:
+            codigo_ubicacion = self._normalize_codigo_ubicacion_pdc(codigo_ubicacion)
 
         codigos_invalidos = ["0000", "01", "0101", "010101", "8-08-01", "080801", ""]
 
-        if tipo_cliente == "01":  # Contribuyente
+        if tipo_cliente in ("01", "03"):
             if not codigo_ubicacion or codigo_ubicacion.strip() in codigos_invalidos:
                 raise UserError(_(
-                    '❌ Código de Ubicación HKA no configurado o inválido\n\n'
-                    'El cliente contribuyente requiere un código de ubicación válido.\n\n'
-                    'El código debe obtenerse del Portal HKA Factory:\n'
-                    '1. Acceder a https://demo.thefactoryhka.com.pa\n'
-                    '2. Ir a: Configuración → Datos Fiscales → Código de Ubicación\n'
-                    '3. Copiar el código EXACTO (sin modificaciones)\n'
-                    '4. Configurarlo en el campo "Código Ubicación" del contacto\n\n'
-                    '⚠️ IMPORTANTE: El código debe coincidir EXACTAMENTE con el registrado en HKA.\n'
-                    'No usar códigos genéricos de la DGI.'
+                    'Código de ubicación faltante o inválido.\n\n'
+                    'En el contacto use el catálogo «Código ubicación P-D-C» o el campo de texto; '
+                    'debe ser el código P-D-C válido (no un marcador de prueba).'
                 ))
-        
-        # Para Consumidor Final (02), el código es opcional pero recomendado
+
         elif codigo_ubicacion and codigo_ubicacion.strip() in codigos_invalidos:
             _logger.warning(
                 f"Cliente {partner.name} (ID: {partner.id}) tiene código de ubicación inválido: {codigo_ubicacion}. "
@@ -714,7 +677,7 @@ class AccountMove(models.Model):
             else:
                 # En envío automático, solo registrar en chatter
                 self.message_post(
-                    body=_("✅ <b>Factura enviada automáticamente a HKA</b><br/>"
+                    body=_("✅ <b>Factura enviada automáticamente (facturación electrónica)</b><br/>"
                           "CUFE: <b>%s</b><br/>"
                           "Estado: <b>Autorizado</b>") % data.get('cufe'),
                     subject=_("Facturación Electrónica Automática")
@@ -729,7 +692,7 @@ class AccountMove(models.Model):
             if self.env.context.get('skip_notification'):
                 raise Exception(error_msg)  # Para que el _post lo capture
             else:
-                raise UserError(_('Error al enviar a HKA: %s') % error_msg)
+                raise UserError(_('Error al enviar el documento electrónico: %s') % error_msg)
     
     def action_cancel_dgi(self):
         """Anula la factura en la DGI vía API HKA."""
@@ -775,6 +738,13 @@ class AccountMove(models.Model):
                 subject=_('Anulación DGI'),
             )
         return True
+
+    def action_reprint_fiscal(self):
+        """Descarga el PDF fiscal generado por HKA."""
+        self.ensure_one()
+        if not self.hka_document_id:
+            raise UserError(_('No hay documento fiscal electrónico asociado.'))
+        return self.hka_document_id.action_download_pdf()
 
     def action_cancel_hka(self):
         """Abre wizard para indicar motivo y luego anular en DGI."""
@@ -854,7 +824,7 @@ class AccountMove(models.Model):
                 # Si es un error de usuario (configuración, etc.), registrar pero no bloquear
                 _logger.warning(f"Error al enviar factura {invoice.name} a HKA: {e}")
                 invoice.message_post(
-                    body=_("⚠️ <b>Error al enviar automáticamente a HKA:</b><br/>%s<br/><br/>"
+                    body=_("⚠️ <b>Error al enviar automáticamente el documento electrónico:</b><br/>%s<br/><br/>"
                           "Puede intentar enviar manualmente usando el botón 'Enviar a DGI'.") % str(e),
                     subject=_("Error Facturación Electrónica Automática")
                 )
@@ -862,7 +832,7 @@ class AccountMove(models.Model):
                 # Cualquier otro error, registrar en log y chatter
                 _logger.error(f"Error inesperado al enviar factura {invoice.name} a HKA: {e}", exc_info=True)
                 invoice.message_post(
-                    body=_("⚠️ <b>Error inesperado al enviar automáticamente a HKA:</b><br/>%s<br/><br/>"
+                    body=_("⚠️ <b>Error inesperado al enviar automáticamente el documento electrónico:</b><br/>%s<br/><br/>"
                           "Puede intentar enviar manualmente usando el botón 'Enviar a DGI'.") % str(e),
                     subject=_("Error Facturación Electrónica Automática")
                 )

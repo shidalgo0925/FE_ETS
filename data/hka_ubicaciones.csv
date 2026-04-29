@@ -1,0 +1,81 @@
+codigo,provincia,distrito,corregimiento
+8-10-7,Panamá,San Miguelito,Arnulfo Arias
+8-10-8,Panamá,San Miguelito,Belisario Frías
+8-10-9,Panamá,San Miguelito,Omar Torrijos
+8-10-10,Panamá,San Miguelito,Rufina Alfaro
+9-1-1,Colón,Colón,Colón
+9-1-2,Colón,Colón,Cristóbal
+9-1-3,Colón,Colón,Escobal
+9-1-4,Colón,Colón,Nueva Providencia
+9-1-5,Colón,Colón,Puerto Pilón
+10-1-1,Panamá Oeste,La Chorrera,La Chorrera
+10-1-2,Panamá Oeste,La Chorrera,Barrio Balboa
+10-1-3,Panamá Oeste,La Chorrera,Barrio Colón
+10-1-4,Panamá Oeste,La Chorrera,Amador
+10-1-5,Panamá Oeste,La Chorrera,Arosemena
+10-1-6,Panamá Oeste,La Chorrera,El Arado
+10-1-7,Panamá Oeste,La Chorrera,El Coco
+10-1-8,Panamá Oeste,La Chorrera,Feuillet
+10-1-9,Panamá Oeste,La Chorrera,Guadalupe
+10-1-10,Panamá Oeste,La Chorrera,Herrera
+10-1-11,Panamá Oeste,La Chorrera,Hurtado
+10-1-12,Panamá Oeste,La Chorrera,Iturralde
+10-1-13,Panamá Oeste,La Chorrera,La Represa
+10-1-14,Panamá Oeste,La Chorrera,Los Díaz
+10-1-15,Panamá Oeste,La Chorrera,Mendoza
+10-1-16,Panamá Oeste,La Chorrera,Obaldía
+10-1-17,Panamá Oeste,La Chorrera,Playa Leona
+10-1-18,Panamá Oeste,La Chorrera,Puerto Caimito
+10-1-19,Panamá Oeste,La Chorrera,Santa Rita
+11-1-1,Emberá-Wounaan,Cémaco,Cémaco
+11-1-2,Emberá-Wounaan,Cémaco,Cirilo Guainora
+11-1-3,Emberá-Wounaan,Cémaco,Lajas Blancas
+11-1-4,Emberá-Wounaan,Cémaco,Manuel Ortega
+11-1-5,Emberá-Wounaan,Cémaco,Río Sabalo
+12-1-1,Ngäbe-Buglé,Ñürüm,Ñürüm
+12-1-2,Ngäbe-Buglé,Ñürüm,Alto Caballero
+12-1-3,Ngäbe-Buglé,Ñürüm,Bakama
+12-1-4,Ngäbe-Buglé,Ñürüm,Cerro Banco
+12-1-5,Ngäbe-Buglé,Ñürüm,Cerro Pelado
+12-1-6,Ngäbe-Buglé,Ñürüm,El Bale
+12-1-7,Ngäbe-Buglé,Ñürüm,El Nancito
+12-1-8,Ngäbe-Buglé,Ñürüm,El Piro
+12-1-9,Ngäbe-Buglé,Ñürüm,Guayabito
+12-1-10,Ngäbe-Buglé,Ñürüm,Lajero
+12-1-11,Ngäbe-Buglé,Ñürüm,Lajero Arriba
+12-1-12,Ngäbe-Buglé,Ñürüm,Quebrada Canoa
+12-1-13,Ngäbe-Buglé,Ñürüm,Quebrada Tula
+12-1-14,Ngäbe-Buglé,Ñürüm,Sitio Prado
+12-1-15,Ngäbe-Buglé,Ñürüm,Soloy
+12-1-16,Ngäbe-Buglé,Ñürüm,Sortová
+12-1-17,Ngäbe-Buglé,Ñürüm,Tugrí
+12-1-18,Ngäbe-Buglé,Ñürüm,Alto Caballero
+12-1-19,Ngäbe-Buglé,Ñürüm,Bakama
+12-1-20,Ngäbe-Buglé,Ñürüm,Cerro Banco
+13-1-1,Los Santos,Los Santos,Los Santos
+13-1-2,Los Santos,Los Santos,La Villa de Los Santos
+13-1-3,Los Santos,Los Santos,El Guásimo
+13-1-4,Los Santos,Los Santos,La Espigadilla
+13-1-5,Los Santos,Los Santos,Las Cruces
+13-1-6,Los Santos,Los Santos,Las Tablas
+13-1-7,Los Santos,Los Santos,Llano Abajo
+13-1-8,Los Santos,Los Santos,Llano Largo
+13-1-9,Los Santos,Los Santos,Sabanagrande
+13-1-10,Los Santos,Los Santos,San José
+13-1-11,Los Santos,Los Santos,Santa Ana
+13-1-12,Los Santos,Los Santos,La Tiza
+13-1-13,Los Santos,Los Santos,La Enea
+13-1-14,Los Santos,Los Santos,Tres Quebradas
+13-1-15,Los Santos,Los Santos,El Carate
+13-1-16,Los Santos,Los Santos,La Colorada
+13-1-17,Los Santos,Los Santos,San José de Las Lajas
+13-1-18,Los Santos,Los Santos,El Guásimo de Santa Ana
+13-1-19,Los Santos,Los Santos,El Cedro
+13-1-20,Los Santos,Los Santos,El Manantial
+13-1-21,Los Santos,Los Santos,El Pedregoso
+13-1-22,Los Santos,Los Santos,La Laja
+13-1-23,Los Santos,Los Santos,La Tronosa
+13-1-24,Los Santos,Los Santos,Las Palmas
+13-1-25,Los Santos,Los Santos,Llano de Piedra
+13-1-26,Los Santos,Los Santos,Macaracas
+13-1-27,Los Santos,Los Santos,Mogollón

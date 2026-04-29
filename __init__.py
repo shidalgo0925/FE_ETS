@@ -37,7 +37,6 @@ def _cargar_codigos_ubicacion_si_faltan(env):
         Model.create(vals)
         creados += 1
     if creados:
-        _logger.info('FE_HKA_OCI: Cargados %s códigos de ubicación (solo los faltantes).', creados)
+        _logger.info('FE_ETS: Cargados %s códigos de ubicación (solo los faltantes).', creados)
 
 
-# post_init_hook reemplazado por load_panama_locations (data/load_panama_locations.py)

@@ -4,7 +4,7 @@ from odoo import models, fields, api
 
 class HKADocument(models.Model):
     _name = 'hka.document'
-    _description = 'Documento Electrónico HKA'
+    _description = 'Documento fiscal electrónico (Panamá)'
     _order = 'create_date desc'
     _rec_name = 'cufe'
     
@@ -209,7 +209,7 @@ class HKADocument(models.Model):
                 return None
             if attempt < max_attempts:
                 _logger.info(
-                    'FE_HKA_OCI: Reintento %s/%s descarga PDF CUFE %s en %ss',
+                    'FE_ETS: Reintento %s/%s descarga PDF CUFE %s en %ss',
                     attempt, max_attempts, self.cufe, delay_seconds
                 )
                 time.sleep(delay_seconds)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_fe_hka_oci" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.fe_hka_oci</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority" eval="40"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="after">
+                <page string="Datos Fiscales Panamá" name="datos_fiscales_pa">
+                    <group>
+                        <group string="DATOS FISCALES">
+                            <field name="pa_tipo_cliente_fe" string="Tipo contribuyente"/>
+                            <field name="pa_ruc" string="RUC"/>
+                            <field name="pa_dv" string="DV"/>
+                            <field name="pa_tipo_ruc" string="Tipo RUC"/>
+                        </group>
+                        <group string="FACTURACIÓN ELECTRÓNICA">
+                            <field name="pa_tipo_cliente_fe" string="Tipo cliente FE"/>
+                            <field name="pa_codigo_ubicacion_id" string="Código ubicación P-D-C"
+                                   domain="[('activo', '=', True)]"
+                                   options="{'no_create': True, 'no_quick_create': True}"
+                                   placeholder="Buscar por provincia, distrito, corregimiento o código P-D-C…"/>
+                            <div colspan="2">
+                                <button name="action_hka_ubicacion_help" type="object" string="¿Cómo obtener el código?" class="btn-secondary" icon="fa-question-circle" colspan="2"/>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

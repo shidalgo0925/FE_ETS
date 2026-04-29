@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hka_cpbs_list" model="ir.ui.view">
+        <field name="name">hka.cpbs.list</field>
+        <field name="model">hka.cpbs</field>
+        <field name="arch" type="xml">
+            <list string="Catálogo CPBS (FE Panamá)" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hka_unidad_medida_list" model="ir.ui.view">
+        <field name="name">hka.unidad.medida.list</field>
+        <field name="model">hka.unidad.medida</field>
+        <field name="arch" type="xml">
+            <list string="Catálogo unidades de medida DGI" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_hka_cpbs" model="ir.actions.act_window">
+        <field name="name">CPBS (Facturación electrónica)</field>
+        <field name="res_model">hka.cpbs</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_hka_unidad_medida" model="ir.actions.act_window">
+        <field name="name">Unidades DGI</field>
+        <field name="res_model">hka.unidad.medida</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hka_cpbs"
+              name="CPBS (FE Panamá)"
+              parent="account.account_invoicing_menu"
+              action="action_hka_cpbs"
+              sequence="36"
+              groups="account.group_account_invoice"/>
+
+    <menuitem id="menu_hka_unidad_medida"
+              name="Unidades DGI"
+              parent="account.account_invoicing_menu"
+              action="action_hka_unidad_medida"
+              sequence="37"
+              groups="account.group_account_invoice"/>
+</odoo>

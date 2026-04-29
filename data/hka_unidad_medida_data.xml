@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Unidades de medida alineadas con Tabla 3 (WIKI HKA Panamá — felwiki.thefactoryhka.com.pa).
+        El campo enviado a la API es `code` (ej. m, kg, und). Ampliar según el PDF oficial Tabla 3.
+    -->
+    <data noupdate="1">
+        <record id="hka_um_unidad" model="hka.unidad.medida">
+            <field name="name">Unidad / pieza</field>
+            <field name="code">und</field>
+        </record>
+        <record id="hka_um_u" model="hka.unidad.medida">
+            <field name="name">Unidad (U)</field>
+            <field name="code">U</field>
+        </record>
+        <record id="hka_um_un" model="hka.unidad.medida">
+            <field name="name">Unidad (UN)</field>
+            <field name="code">UN</field>
+        </record>
+        <record id="hka_um_pz" model="hka.unidad.medida">
+            <field name="name">Pieza (pz)</field>
+            <field name="code">pz</field>
+        </record>
+        <record id="hka_um_par" model="hka.unidad.medida">
+            <field name="name">Par</field>
+            <field name="code">par</field>
+        </record>
+        <record id="hka_um_kg" model="hka.unidad.medida">
+            <field name="name">Kilogramo (kg)</field>
+            <field name="code">kg</field>
+        </record>
+        <record id="hka_um_g" model="hka.unidad.medida">
+            <field name="name">Gramo (g)</field>
+            <field name="code">g</field>
+        </record>
+        <record id="hka_um_t" model="hka.unidad.medida">
+            <field name="name">Tonelada (t)</field>
+            <field name="code">t</field>
+        </record>
+        <record id="hka_um_lb" model="hka.unidad.medida">
+            <field name="name">Libra (lb)</field>
+            <field name="code">lb</field>
+        </record>
+        <record id="hka_um_l" model="hka.unidad.medida">
+            <field name="name">Litro (l)</field>
+            <field name="code">l</field>
+        </record>
+        <record id="hka_um_ml" model="hka.unidad.medida">
+            <field name="name">Mililitro (ml)</field>
+            <field name="code">ml</field>
+        </record>
+        <record id="hka_um_gl" model="hka.unidad.medida">
+            <field name="name">Galón (gl)</field>
+            <field name="code">gl</field>
+        </record>
+        <record id="hka_um_m" model="hka.unidad.medida">
+            <field name="name">Metro (m)</field>
+            <field name="code">m</field>
+        </record>
+        <record id="hka_um_cm" model="hka.unidad.medida">
+            <field name="name">Centímetro (cm)</field>
+            <field name="code">cm</field>
+        </record>
+        <record id="hka_um_m2" model="hka.unidad.medida">
+            <field name="name">Metro cuadrado (m2)</field>
+            <field name="code">m2</field>
+        </record>
+        <record id="hka_um_m3" model="hka.unidad.medida">
+            <field name="name">Metro cúbico (m3)</field>
+            <field name="code">m3</field>
+        </record>
+        <record id="hka_um_h" model="hka.unidad.medida">
+            <field name="name">Hora (h)</field>
+            <field name="code">h</field>
+        </record>
+        <record id="hka_um_d" model="hka.unidad.medida">
+            <field name="name">Día</field>
+            <field name="code">dia</field>
+        </record>
+        <record id="hka_um_cj" model="hka.unidad.medida">
+            <field name="name">Caja (cj)</field>
+            <field name="code">cj</field>
+        </record>
+        <record id="hka_um_pq" model="hka.unidad.medida">
+            <field name="name">Paquete (pq)</field>
+            <field name="code">pq</field>
+        </record>
+        <record id="hka_um_bl" model="hka.unidad.medida">
+            <field name="name">Blíster</field>
+            <field name="code">bl</field>
+        </record>
+        <record id="hka_um_serv" model="hka.unidad.medida">
+            <field name="name">Servicio (serv)</field>
+            <field name="code">serv</field>
+        </record>
+        <record id="hka_um_global" model="hka.unidad.medida">
+            <field name="name">Global</field>
+            <field name="code">global</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        CPBS — Codificación Panameña de Bienes y Servicios (basada en UNSPSC).
+        Referencia: Tabla 4 (WIKI HKA Panamá). El código debe tener al menos 4 caracteres
+        alfanuméricos; el módulo envía codigoCPBS (4 primeros) y codigoCPBSAbrev (2 primeros).
+        Lista orientativa para PYMES; validar rubro específico con el anexo DGI/CPBS oficial.
+    -->
+    <data noupdate="1">
+        <record id="hka_cpbs_50101701" model="hka.cpbs">
+            <field name="name">50101701 — Verduras frescas</field>
+            <field name="code">50101701</field>
+        </record>
+        <record id="hka_cpbs_50161501" model="hka.cpbs">
+            <field name="name">50161501 — Carnes y embutidos</field>
+            <field name="code">50161501</field>
+        </record>
+        <record id="hka_cpbs_50171701" model="hka.cpbs">
+            <field name="name">50171701 — Lácteos</field>
+            <field name="code">50171701</field>
+        </record>
+        <record id="hka_cpbs_50192001" model="hka.cpbs">
+            <field name="name">50192001 — Alimentos empacados / abarrotes</field>
+            <field name="code">50192001</field>
+        </record>
+        <record id="hka_cpbs_50201701" model="hka.cpbs">
+            <field name="name">50201701 — Bebidas alcohólicas</field>
+            <field name="code">50201701</field>
+        </record>
+        <record id="hka_cpbs_50202301" model="hka.cpbs">
+            <field name="name">50202301 — Bebidas no alcohólicas</field>
+            <field name="code">50202301</field>
+        </record>
+        <record id="hka_cpbs_44121701" model="hka.cpbs">
+            <field name="name">44121701 — Artículos de escritorio y papelería</field>
+            <field name="code">44121701</field>
+        </record>
+        <record id="hka_cpbs_44121603" model="hka.cpbs">
+            <field name="name">44121603 — Equipo de oficina y suministros</field>
+            <field name="code">44121603</field>
+        </record>
+        <record id="hka_cpbs_44101501" model="hka.cpbs">
+            <field name="name">44101501 — Mobiliario de oficina</field>
+            <field name="code">44101501</field>
+        </record>
+        <record id="hka_cpbs_12352200" model="hka.cpbs">
+            <field name="name">12352200 — Papel y productos de papel</field>
+            <field name="code">12352200</field>
+        </record>
+        <record id="hka_cpbs_52151501" model="hka.cpbs">
+            <field name="name">52151501 — Ropa y textiles</field>
+            <field name="code">52151501</field>
+        </record>
+        <record id="hka_cpbs_53131601" model="hka.cpbs">
+            <field name="name">53131601 — Productos de cuidado personal</field>
+            <field name="code">53131601</field>
+        </record>
+        <record id="hka_cpbs_53101501" model="hka.cpbs">
+            <field name="name">53101501 — Productos de limpieza</field>
+            <field name="code">53101501</field>
+        </record>
+        <record id="hka_cpbs_30191501" model="hka.cpbs">
+            <field name="name">30191501 — Materiales de construcción</field>
+            <field name="code">30191501</field>
+        </record>
+        <record id="hka_cpbs_27131501" model="hka.cpbs">
+            <field name="name">27131501 — Herramientas manuales</field>
+            <field name="code">27131501</field>
+        </record>
+        <record id="hka_cpbs_26111701" model="hka.cpbs">
+            <field name="name">26111701 — Cableado y conductores eléctricos</field>
+            <field name="code">26111701</field>
+        </record>
+        <record id="hka_cpbs_40101501" model="hka.cpbs">
+            <field name="name">40101501 — Servicios de construcción</field>
+            <field name="code">40101501</field>
+        </record>
+        <record id="hka_cpbs_43201501" model="hka.cpbs">
+            <field name="name">43201501 — Computadoras y hardware</field>
+            <field name="code">43201501</field>
+        </record>
+        <record id="hka_cpbs_45101501" model="hka.cpbs">
+            <field name="name">45101501 — Componentes electrónicos</field>
+            <field name="code">45101501</field>
+        </record>
+        <record id="hka_cpbs_42171501" model="hka.cpbs">
+            <field name="name">42171501 — Equipo y suministros médicos</field>
+            <field name="code">42171501</field>
+        </record>
+        <record id="hka_cpbs_51101501" model="hka.cpbs">
+            <field name="name">51101501 — Medicamentos y farmacia</field>
+            <field name="code">51101501</field>
+        </record>
+        <record id="hka_cpbs_72101501" model="hka.cpbs">
+            <field name="name">72101501 — Servicios de tecnología de la información</field>
+            <field name="code">72101501</field>
+        </record>
+        <record id="hka_cpbs_72101601" model="hka.cpbs">
+            <field name="name">72101601 — Servicios de consultoría de gestión</field>
+            <field name="code">72101601</field>
+        </record>
+        <record id="hka_cpbs_72141501" model="hka.cpbs">
+            <field name="name">72141501 — Alojamiento / hospedaje</field>
+            <field name="code">72141501</field>
+        </record>
+        <record id="hka_cpbs_72151501" model="hka.cpbs">
+            <field name="name">72151501 — Servicios de restauración y comidas</field>
+            <field name="code">72151501</field>
+        </record>
+        <record id="hka_cpbs_72151801" model="hka.cpbs">
+            <field name="name">72151801 — Catering y banquetes</field>
+            <field name="code">72151801</field>
+        </record>
+        <record id="hka_cpbs_73101501" model="hka.cpbs">
+            <field name="name">73101501 — Servicios de publicidad</field>
+            <field name="code">73101501</field>
+        </record>
+        <record id="hka_cpbs_83101501" model="hka.cpbs">
+            <field name="name">83101501 — Servicios legales</field>
+            <field name="code">83101501</field>
+        </record>
+        <record id="hka_cpbs_83121601" model="hka.cpbs">
+            <field name="name">83121601 — Servicios de contabilidad y auditoría</field>
+            <field name="code">83121601</field>
+        </record>
+        <record id="hka_cpbs_82101501" model="hka.cpbs">
+            <field name="name">82101501 — Servicios de ingeniería</field>
+            <field name="code">82101501</field>
+        </record>
+        <record id="hka_cpbs_78101501" model="hka.cpbs">
+            <field name="name">78101501 — Servicios de viajes y transporte de pasajeros</field>
+            <field name="code">78101501</field>
+        </record>
+        <record id="hka_cpbs_80101501" model="hka.cpbs">
+            <field name="name">80101501 — Servicios de arrendamiento</field>
+            <field name="code">80101501</field>
+        </record>
+        <record id="hka_cpbs_90101501" model="hka.cpbs">
+            <field name="name">90101501 — Servicios de mantenimiento y reparación</field>
+            <field name="code">90101501</field>
+        </record>
+        <record id="hka_cpbs_93101501" model="hka.cpbs">
+            <field name="name">93101501 — Servicios administrativos y de apoyo</field>
+            <field name="code">93101501</field>
+        </record>
+        <record id="hka_cpbs_78111501" model="hka.cpbs">
+            <field name="name">78111501 — Transporte de carga y mensajería</field>
+            <field name="code">78111501</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_inherit_fe_hka_oci" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.fe_hka_oci</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Facturación Electrónica de ETS (Panamá)" name="fe_hka_pa">
+                    <group>
+                        <group string="Conexión al servicio (PAC)">
+                            <p class="text-muted small" colspan="2">Credenciales del proveedor autorizado de certificación para envío a DGI.</p>
+                            <field name="hka_ambiente" string="Ambiente"/>
+                            <field name="hka_usuario" string="Usuario"/>
+                            <field name="hka_clave" string="Contraseña" password="True" force_save="1"/>
+                            <field name="hka_auto_send" string="Enviar automáticamente a DGI" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Datos fiscales">
+                            <p class="text-muted small" colspan="2">Configure los datos fiscales del emisor</p>
+                            <field name="hka_ruc" string="RUC"/>
+                            <field name="hka_dv" string="DV"/>
+                            <field name="hka_codigo_sucursal" string="Código Sucursal"/>
+                            <field name="hka_tipo_sucursal" string="Tipo Sucursal"/>
+                            <field name="hka_punto_facturacion" string="Punto de Facturación"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <button name="action_hka_test_connection" type="object" string="Probar Conexión" class="btn-secondary" icon="fa-plug" colspan="2"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Configuración de documentos">
+                            <p class="text-muted small" colspan="2">Configure el formato de los documentos</p>
+                            <field name="hka_formato_cafe" string="Formato CAFE"/>
+                            <field name="hka_entrega_cafe" string="Entrega CAFE"/>
+                        </group>
+                        <group string="Licencia">
+                            <p class="text-muted small" colspan="2">Información de la licencia del servicio de facturación</p>
+                            <field name="hka_numero_licencia" string="Número de Licencia"/>
+                            <field name="hka_folios_disponibles" string="Folios Disponibles" readonly="1"/>
+                            <field name="hka_ultima_sincronizacion" string="Última Sincronización" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

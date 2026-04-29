@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Carga de ubicaciones de Panamá desde CSV. Una sola fuente para no reparar a cada rato.
+Carga **opcional** de códigos P-D-C desde CSV. **No** se ejecuta al instalar el módulo.
 
-Fuente: Catálogo unificado DGI / HKA (felwiki.thefactoryhka.com.pa). codigoUbicacion
-obligatorio para contribuyente; formato P-D-C (provincia-distrito-corregimiento).
-El CSV debe coincidir con lo que acepta HKA (ej. 8-8-21 = 24 de Diciembre, aceptado por HKA).
+No se pretende cargar todo Panamá: las filas de `hka_ubicaciones.csv` son solo referencia o
+importación bajo demanda. Alta manual en el menú «Código ubicación HKA» o importar llamando
+`load_panama_locations(env)` desde la shell de Odoo si lo necesitan.
 
-Archivo: FE_HKA_OCI/data/hka_ubicaciones.csv
-Formato: codigo,provincia,distrito,corregimiento
+Fuente DGI/HKA: codigoUbicacion formato P-D-C (provincia-distrito-corregimiento).
+
+Archivo: FE_ETS/data/hka_ubicaciones.csv — Formato: codigo,provincia,distrito,corregimiento
 """
 import csv
 import logging
@@ -80,7 +81,7 @@ def _ensure_panama_states(env):
                 'country_id': country.id,
                 'code': code,
             })
-            _logger.info('FE_HKA_OCI: Creada provincia PA: %s (%s)', name, code)
+            _logger.info('FE_ETS: Creada provincia PA: %s (%s)', name, code)
 
 
 def _ensure_panama_districts(env):
@@ -133,16 +134,17 @@ def _limpiar_y_cargar_ubicaciones(env):
             Partner.browse(partner_id).write({'pa_codigo_ubicacion_id': hka.id})
             reasignados += 1
     if backup:
-        _logger.info('FE_HKA_OCI: Ubicaciones: tabla limpiada, cargada desde CSV; %s partners reasignados.', reasignados)
+        _logger.info('FE_ETS: Ubicaciones: tabla limpiada, cargada desde CSV; %s partners reasignados.', reasignados)
     return reasignados
 
 
 def _load_hka_location_codes(env):
     """
-    Paso 4: Limpia tabla de ubicaciones y carga solo desde CSV (una sola fuente).
-    Reasigna partners por código P-D-C o por provincia/distrito/corregimiento.
+    Paso 4: Fusiona filas desde CSV sin vaciar la tabla (respeta ubicaciones dadas de alta a mano).
+    Actualiza o crea por código P-D-C; no es el catálogo completo del país, solo lo definido en el CSV.
+    También existen los mismos registros en data/hka_codigo_ubicacion_data.xml (mantener CSV y XML alineados).
     """
-    _limpiar_y_cargar_ubicaciones(env)
+    _load_from_csv(env)
 
 
 def _load_from_csv(env):
@@ -152,12 +154,12 @@ def _load_from_csv(env):
     """
     csv_path = _get_csv_path()
     if not os.path.isfile(csv_path):
-        _logger.info('FE_HKA_OCI: No se encontró %s; omitiendo carga de ubicaciones desde CSV.', csv_path)
+        _logger.info('FE_ETS: No se encontró %s; omitiendo carga de ubicaciones desde CSV.', csv_path)
         return 0
 
     country = env['res.country'].with_context(active_test=False).search([('code', '=', 'PA')], limit=1)
     if not country:
-        _logger.warning('FE_HKA_OCI: País PA no encontrado; no se cargan ubicaciones.')
+        _logger.warning('FE_ETS: País PA no encontrado; no se cargan ubicaciones.')
         return 0
 
     State = env['res.country.state'].with_context(active_test=False)
@@ -195,13 +197,11 @@ def _load_from_csv(env):
                         })
                         created_states.add(state_key)
                 # hka.codigo.ubicacion (idempotente: crear o actualizar)
-                descripcion = ', '.join(filter(None, [provincia, distrito, corregimiento]))
                 hka = HkaUbicacion.search([('codigo', '=', codigo)], limit=1)
                 vals = {
                     'provincia': provincia,
                     'distrito': distrito,
                     'corregimiento': corregimiento,
-                    'descripcion': descripcion,
                 }
                 if hka:
                     hka.write(vals)
@@ -215,17 +215,17 @@ def _load_from_csv(env):
                     created_hka += 1
 
         except Exception as e:
-            _logger.exception('FE_HKA_OCI: Error leyendo CSV de ubicaciones: %s', e)
+            _logger.exception('FE_ETS: Error leyendo CSV de ubicaciones: %s', e)
             return 0
 
     _logger.info(
-        'FE_HKA_OCI: Ubicaciones CSV: %d creados hka.codigo.ubicacion, %d actualizados.',
+        'FE_ETS: Ubicaciones CSV: %d creados hka.codigo.ubicacion, %d actualizados.',
         created_hka, updated_hka
     )
     return created_hka + updated_hka
 
 
-def load_panama_locations(cr, registry):
+def load_panama_locations(env):
     """
     Post-init hook: secuencia completa para facturación electrónica (solo en instalación).
     1. Provincias (res.country.state)
@@ -233,29 +233,35 @@ def load_panama_locations(cr, registry):
     3. Corregimientos (paso explícito; datos en hka.codigo.ubicacion)
     4. Códigos HKA (CSV + XML, idempotente)
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
     _ensure_panama_states(env)
     _ensure_panama_districts(env)
     _ensure_panama_corregimientos(env)
     _load_hka_location_codes(env)
 
     # Limpiar grupos duplicados (mantener el primero)
+    # Odoo 19: res.groups tiene privilege_id; la categoría va en res.groups.privilege.category_id
     Category = env['ir.module.category']
+    Privilege = env['res.groups.privilege']
     Group = env['res.groups']
-    cat = Category.search([('name', '=', 'Accounting')], limit=1)
+    cat = Category.search(
+        ['|', ('name', '=', 'Accounting'), ('name', '=', 'Contabilidad')],
+        limit=1,
+    )
     if cat:
-        groups = Group.search([
-            ('category_id', '=', cat.id),
-            ('name', 'ilike', 'Facturación Electrónica'),
-        ], order='id')
-        seen = {}
-        to_delete = []
-        for g in groups:
-            key = (g.category_id.id, g.name)
-            if key in seen:
-                to_delete.append(g.id)
-            else:
-                seen[key] = g.id
-        if to_delete:
-            Group.browse(to_delete).unlink()
-            _logger.info('FE_HKA_OCI: Eliminados %s grupos duplicados.', len(to_delete))
+        priv_ids = Privilege.search([('category_id', '=', cat.id)]).ids
+        if priv_ids:
+            groups = Group.search([
+                ('privilege_id', 'in', priv_ids),
+                ('name', 'ilike', 'Facturación Electrónica'),
+            ], order='id')
+            seen = {}
+            to_delete = []
+            for g in groups:
+                key = (g.privilege_id.id, g.name)
+                if key in seen:
+                    to_delete.append(g.id)
+                else:
+                    seen[key] = g.id
+            if to_delete:
+                Group.browse(to_delete).unlink()
+                _logger.info('FE_ETS: Eliminados %s grupos duplicados.', len(to_delete))
