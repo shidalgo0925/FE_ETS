@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Facturación Electrónica de ETS (Panamá)" name="fe_hka_pa">
+                <page string="FE_ETS (Panamá)" name="fe_hka_pa">
                     <group>
                         <group string="Conexión al servicio (PAC)">
                             <p class="text-muted small" colspan="2">Credenciales del proveedor autorizado de certificación para envío a DGI.</p>

@@ -1,8 +1,8 @@
-# Instalación — Facturación Electrónica de ETS (Panamá, Odoo 19)
+# Instalación — FE_ETS (Panamá) / Odoo 19
 
 > **No use** *Aplicaciones → Importar módulo* con un ZIP. Vea `LEEME_INSTALACION.txt` y el comentario en el código de Odoo: los módulos “importados” **no cargan Python**; este addon **debe** ir en el sistema de archivos del servidor (`addons_path`).
 
-Módulo técnico: **FE_ETS** (carpeta del addon; el nombre en Apps es *Facturación Electrónica de ETS*).
+Módulo técnico: **FE_ETS** (carpeta del addon; el nombre en Apps es *FE_ETS (Panamá)*).
 
 ## 1. Requisitos
 
@@ -49,7 +49,7 @@ Reiniciar el servicio de Odoo tras instalar paquetes.
 ### Desde la interfaz (recomendado)
 
 1. Activa el **modo desarrollador** (si aplica).
-2. **Aplicaciones** → quitar el filtro “Aplicaciones” y buscar **FE_ETS** o *Facturación Electrónica de ETS*.
+2. **Aplicaciones** → quitar el filtro “Aplicaciones” y buscar **FE_ETS** o *FE_ETS (Panamá)*.
 3. **Actualizar lista de aplicaciones**.
 4. Instalar el módulo.
 
@@ -93,7 +93,7 @@ prueba antes (no recomendado en producción sin plan de migración).
 
 ## 6. Configuración operativa (resumen)
 
-1. **Ajustes → Empresas → [Su empresa] →** pestaña **Facturación Electrónica de ETS (Panamá)**:  
+1. **Ajustes → Empresas → [Su empresa] →** pestaña **FE_ETS (Panamá)**:  
    - Ambiente, usuario y contraseña del **PAC** (servicio de facturación electrónica).  
    - RUC emisor, DV, sucursal, punto de facturación, CAFE, etc.  
    - Use **Probar conexión** cuando el PAC lo permita.

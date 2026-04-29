@@ -41,7 +41,7 @@ https://github.com/shidalgo0925/FE_ETS/raw/main/FE_ETS_Odoo19.zip
 
 **Prohibido:** *Aplicaciones → Importar módulo* con el ZIP. Odoo **no registra el código Python** de esos paquetes; fallarán datos y vistas que usan `hka.*`. Lea **`LEEME_INSTALACION.txt`** en la raíz del módulo.
 
-**Instalación correcta:** descomprimir el ZIP en el **servidor** en una ruta de `addons_path`, **reiniciar Odoo**, *Actualizar lista de aplicaciones* e instalar **Facturación Electrónica de ETS**.
+**Instalación correcta:** descomprimir el ZIP en el **servidor** en una ruta de `addons_path`, **reiniciar Odoo**, *Actualizar lista de aplicaciones* e instalar **FE_ETS (Panamá)** (búsqueda: FE_ETS).
 
 1. Carpeta `FE_ETS` accesible en `addons_path` (debe existir `FE_ETS/__manifest__.py`).
 2. Reiniciar el servicio Odoo.

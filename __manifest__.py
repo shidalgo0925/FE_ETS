@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Facturación Electrónica de ETS',
-    'version': '19.0.1.6.5',
+    'name': 'FE_ETS (Panamá)',
+    'version': '19.0.1.6.6',
     'category': 'Accounting/Localizations/EDI',
     'summary': (
         'Odoo 19: facturación electrónica Panamá (DGI) — emisión, envío y seguimiento de '
         'comprobantes con Easy Technology Services.'
     ),
     'description': """
-Facturación Electrónica de ETS (Odoo 19 - Panamá)
-=================================================
+FE_ETS (Panamá) — Odoo 19
+=========================
 
 **Qué es este módulo**
 

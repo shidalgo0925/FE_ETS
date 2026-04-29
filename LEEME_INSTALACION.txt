@@ -23,7 +23,7 @@ INSTALACIÓN VÁLIDA
    de su odoo.conf (ej. .../custom-addons/FE_ETS/__manifest__.py).
 3) Reinicie el servicio odoo.
 4) En Odoo: Aplicaciones > Actualizar lista de aplicaciones > Instalar
-   "Facturación Electrónica de ETS".
+   "FE_ETS (Panamá)" (o busque por FE_ETS).
 
 Dependencias Python: requests, PyJWT, qrcode (mismo venv que Odoo).
 

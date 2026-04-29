@@ -376,7 +376,8 @@ def load_panama_locations(env):
         if priv_ids:
             groups = Group.search([
                 ('privilege_id', 'in', priv_ids),
-                ('name', 'ilike', 'Facturación Electrónica'),
+                '|', ('name', 'ilike', 'Facturación Electrónica'),
+                ('name', 'ilike', 'FE_ETS'),
             ], order='id')
             seen = {}
             to_delete = []
