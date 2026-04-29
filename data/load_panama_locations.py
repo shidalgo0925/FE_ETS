@@ -16,6 +16,7 @@ import csv
 import logging
 import os
 import re
+import xml.etree.ElementTree as ET
 
 _logger = logging.getLogger(__name__)
 
@@ -291,16 +292,71 @@ def setup_ir_model_access(env):
     _logger.info('FE_ETS: Permisos ir.model.access comprobados/creados (post_init).')
 
 
+def load_hka_data_catalogs_from_xml_files(env):
+    """
+    Carga filas de ``hka_cpbs_data.xml`` y ``hka_unidad_medida_data.xml`` (antes en el manifiesto
+    ``data/``). Así el import por ZIP de Odoo no falla al parsear esos XML antes de existir
+    modelos; la instalación normal solo crea los registros en *post_init* (modelos ya en registro).
+
+    Comportamiento idempotente: si ya existe un registro con el mismo ``code``, no duplica.
+    """
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+    env = env.sudo()
+
+    def _load_file(xml_name, model_xmlid):
+        creados = 0
+        path = os.path.join(data_dir, xml_name)
+        if not os.path.isfile(path):
+            _logger.warning('FE_ETS: no se encuentra %s; omitiendo.', path)
+            return 0
+        try:
+            tree = ET.parse(path)
+        except Exception as e:  # noqa: BLE001
+            _logger.exception('FE_ETS: error leyendo %s: %s', path, e)
+            return 0
+        Model = env[model_xmlid].sudo()
+        for rec in tree.getroot().iter('record'):
+            if rec.get('model') != model_xmlid:
+                continue
+            vals = {}
+            for field in rec.findall('field'):
+                n = field.get('name')
+                if n:
+                    vals[n] = (field.text or '').strip()
+            code = (vals.get('code') or '').strip()
+            if not code or not (vals.get('name') or '').strip():
+                continue
+            if Model.search([('code', '=', code)], limit=1):
+                continue
+            Model.create(
+                {
+                    'name': vals['name'],
+                    'code': code,
+                }
+            )
+            creados += 1
+        return creados
+
+    creados_cpbs = _load_file('hka_cpbs_data.xml', 'hka.cpbs')
+    creados_um = _load_file('hka_unidad_medida_data.xml', 'hka.unidad.medida')
+    if creados_cpbs or creados_um:
+        _logger.info(
+            'FE_ETS: Catálogos desde XML: %s CPBS, %s unidad medida (nuevos).',
+            creados_cpbs, creados_um,
+        )
+
+
 def load_panama_locations(env):
     """
     Post-init hook: secuencia completa para facturación electrónica (solo en instalación).
     0. ir.model.access (sustituye al CSV de seguridad)
-    1. Provincias (res.country.state)
-    2. Distritos (paso explícito; datos en hka.codigo.ubicacion)
-    3. Corregimientos (paso explícito; datos en hka.codigo.ubicacion)
+    1. CPBS y unidades (XML parseado; ya no en ``data/`` del manifiesto)
+    2. Provincias (res.country.state)
+    3. Distritos / corregimientos (implícitos en hka.codigo.ubicacion)
     4. Códigos P-D-C (CSV, idempotente)
     """
     setup_ir_model_access(env)
+    load_hka_data_catalogs_from_xml_files(env)
     _ensure_panama_states(env)
     _ensure_panama_districts(env)
     _ensure_panama_corregimientos(env)

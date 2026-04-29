@@ -5,8 +5,9 @@
 NO USE: Aplicaciones > Importar módulo (archivo ZIP)
 -----------------------------------------------------
 Esa opción de Odoo ("base_import_module") NO carga el código Python del addon.
-Los modelos hka.*, ampliación de res.company, facturas, etc. NO existen y la
-importación fallará (CSV, XML, vistas) o dejará la base en estado incorrecto.
+Los modelos hka.*, ampliación de res.company, facturas, etc. NO existen. La
+importación fallará en las VISTAS (campos hka.* inexistentes) aunque otros
+archivos de datos dejen de bloquear. Única solución: instalar por addons_path.
 
 INSTALACIÓN VÁLIDA
 -----------------
