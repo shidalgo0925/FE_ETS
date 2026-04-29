@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Facturación Electrónica de ETS',
-    'version': '19.0.1.6.4',
+    'version': '19.0.1.6.5',
     'category': 'Accounting/Localizations/EDI',
     'summary': (
-        'NO use «Importar módulo (ZIP)». Ponga la carpeta FE_ETS en addons_path, reinicie e '
-        'instale. Odoo 19, facturación electrónica Panamá (DGI) — ETS.'
+        'Odoo 19: facturación electrónica Panamá (DGI) — emisión, envío y seguimiento de '
+        'comprobantes con Easy Technology Services.'
     ),
     'description': """
-**NO importe este módulo con Aplicaciones > Importar módulo (archivo ZIP).** Ese flujo de Odoo
-no carga el Python del addon: fallará (p. ej. *El campo hka_ambiente no existe en res.company*)
-aunque el paquete sea correcto. Vea ``LEEME_INSTALACION.txt``: carpeta en ``addons_path``,
-reinicio, instalar desde Aplicaciones.
-
-------------------------------------------------------------------------
-
 Facturación Electrónica de ETS (Odoo 19 - Panamá)
 =================================================
 
@@ -25,7 +18,8 @@ con un **proveedor autorizado de certificación (PAC)** y los requisitos de la
 **Dirección General de Ingresos (DGI)** y los catálogos oficiales aplicables.
 
 El **nombre técnico** del módulo en Odoo es **FE_ETS** (debe coincidir con el nombre de la
-carpeta del addon en ``addons_path``).
+carpeta del addon en ``addons_path``). La instalación correcta y el aviso sobre *Importar módulo
+(ZIP)* están en ``LEEME_INSTALACION.txt`` en el addon.
 
 **Funcionalidades principales**
 
